@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kakudio — games, mods, and experiments</title>
+  <meta name="description" content="Kakudio makes games, mods, and experiments that make familiar systems behave in unfamiliar ways. The Spelunky Randomizer for Spelunky 2 is in beta and looking for testers.">
+  <link rel="canonical" href="https://kakudio.dev/">
+  <meta name="theme-color" content="#100e0c">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kakudio">
+  <meta property="og:title" content="Kakudio — games, mods, and experiments">
+  <meta property="og:description" content="Games are more interesting when the rules change. The Spelunky Randomizer is in beta and looking for testers.">
+  <meta property="og:url" content="https://kakudio.dev/">
+  <meta property="og:image" content="https://kakudio.dev/assets/img/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Kakudio wordmark on a dark background with the line: Games are more interesting when the rules change.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kakudio — games, mods, and experiments">
+  <meta name="twitter:description" content="Games are more interesting when the rules change. The Spelunky Randomizer is in beta and looking for testers.">
+  <meta name="twitter:image" content="https://kakudio.dev/assets/img/social-preview.png">
+  <meta name="twitter:image:alt" content="The Kakudio wordmark on a dark background with the line: Games are more interesting when the rules change.">
+
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script src="/config.js" defer></script>
+  <script src="/assets/js/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#randomizer">Skip to the randomizer</a>
+
+  <header class="hero">
+    <div class="wrap">
+      <h1 class="wordmark">Kakudio<span class="wordmark-cursor" aria-hidden="true"></span></h1>
+      <p class="tagline">Games, mods, and experiments that make familiar systems behave in unfamiliar ways.</p>
+      <a class="button button--primary" href="#randomizer">Try the randomizer beta <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="ground" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section class="brand-line" aria-label="What we believe">
+      <div class="wrap">
+        <p>Games are more interesting when <span class="shuffled">the rules change</span>.</p>
+      </div>
+    </section>
+
+    <section class="project" id="randomizer" aria-labelledby="project-heading">
+      <div class="wrap">
+        <h2 class="eyebrow" id="project-heading">Featured project</h2>
+        <div class="project-card">
+          <div class="project-body">
+            <p class="status"><span class="status-badge" data-field="status"></span> <span data-field="statusNote"></span></p>
+            <h3 class="project-name" data-field="name">Spelunky Randomizer</h3>
+            <p class="project-description" data-field="description"></p>
+            <p class="project-requirements" data-field="requirements"></p>
+            <noscript><p class="project-description">Turn on JavaScript to see the project details and download links.</p></noscript>
+            <div class="actions">
+              <span class="button button--primary" data-link="download">Download Beta</span>
+              <span class="button" data-link="github">View on GitHub</span>
+              <span class="button" data-link="discord">Join Discord</span>
+            </div>
+            <p class="also-on"><span class="text-link" data-link="spelunkyFyi">Listing on spelunky.fyi</span></p>
+          </div>
+
+          <div class="media" aria-label="Screenshots and gameplay">
+            <figure class="slot slot--wide" data-media-slot><figcaption>Gameplay footage<br>coming soon</figcaption></figure>
+            <figure class="slot" data-media-slot><figcaption>Screenshot<br>coming soon</figcaption></figure>
+            <figure class="slot" data-media-slot><figcaption>Screenshot<br>coming soon</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testers" id="beta-testers" aria-labelledby="testers-heading">
+      <div class="wrap testers-grid">
+        <div>
+          <h2 id="testers-heading">Help test the beta</h2>
+          <p>Play a few seeds, then tell us how it went. Short, honest notes are the most useful kind. We want to hear:</p>
+        </div>
+        <div>
+          <ul class="feedback-list">
+            <li>Whether the progression felt interesting</li>
+            <li>Whether anything felt impossible or unclear</li>
+            <li>Whether it changed how you played routes or objectives</li>
+            <li>Bugs, ideally with the newest run report attached</li>
+            <li>Install or setup steps that tripped you up</li>
+          </ul>
+          <p>Bring it all to the Discord.</p>
+          <div class="actions">
+            <span class="button button--primary" data-link="discord">Join Discord</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <div class="wrap">
+        <h2 id="about-heading">About</h2>
+        <p>Kakudio is a small game-development project focused on mods, tools, and experimental game systems. Mostly that means taking rules you already know by heart, moving a few of them, and seeing what happens.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <p class="footer-mark">Kakudio</p>
+      <p><span class="text-link" data-link="githubOrg">Kakudio on GitHub</span></p>
+      <p class="legal">© 2026 Kakudio. Spelunky and related properties belong to their respective owners. The Spelunky Randomizer is an unofficial mod; Kakudio is not affiliated with or endorsed by Mossmouth.</p>
+    </div>
+  </footer>
+</body>
+</html>

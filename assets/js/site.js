@@ -19,7 +19,6 @@
       link.innerHTML = el.innerHTML;
       el.replaceWith(link);
     } else {
-      el.classList.add("is-soon");
       const note = document.createElement("span");
       note.className = "soon-note";
       note.textContent = "coming soon";

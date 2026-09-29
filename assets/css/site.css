@@ -195,7 +195,7 @@ a.button:active {
   box-shadow: 0 2px 0 #000;
 }
 
-.button.is-soon {
+span.button {
   background: transparent;
   border: 2px dashed var(--line);
   color: var(--soon);
@@ -222,7 +222,7 @@ a.button:active {
   font-weight: 600;
 }
 
-.text-link.is-soon {
+span.text-link {
   color: var(--soon);
   font-weight: 400;
 }

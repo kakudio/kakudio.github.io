@@ -1,6 +1,6 @@
 # kakudio.github.io
 
-Source for [kakudio.dev](https://kakudio.dev), the Kakudio website: one static page that introduces Kakudio and sends people to the Spelunky Randomizer beta. Plain HTML, CSS and a little JavaScript — no framework, no build step.
+Source for [kakudio.dev](https://kakudio.dev), the Kakudio website: one static page that introduces Kakudio and sends people to the beta of Shell Game, a key item randomizer for Spelunky 2. Plain HTML, CSS and a little JavaScript — no framework, no build step.
 
 ## Run it locally
 
@@ -16,7 +16,7 @@ Then open <http://localhost:8000/>. The 404 page is at <http://localhost:8000/40
 
 | What | Where |
 | --- | --- |
-| Randomizer name, description, beta status, requirements line | `config.js` → `randomizer` |
+| Randomizer name, descriptor (the line under the name), description, beta status, requirements line | `config.js` → `randomizer` |
 | Every external link (Download Beta, View on GitHub, Join Discord, spelunky.fyi, GitHub org) | `config.js` → `links` |
 | Screenshots and gameplay GIFs | `config.js` → `media`, files in `assets/media/` |
 | Brand copy, headings, beta-tester and About text, footer | `index.html` |

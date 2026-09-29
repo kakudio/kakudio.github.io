@@ -322,6 +322,16 @@ span.text-link {
   margin-bottom: 1.25rem;
 }
 
+.project-name:has(+ .project-descriptor:not([hidden])) {
+  margin-bottom: 0.5rem;
+}
+
+.project-descriptor {
+  color: var(--muted);
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  margin-bottom: 1.25rem;
+}
+
 .project-description {
   font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
   max-width: 38em;

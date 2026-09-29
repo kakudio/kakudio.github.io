@@ -7,7 +7,7 @@ window.KAKUDIO_CONFIG = {
     description:
       "A key item randomizer for Spelunky 2. Important checks and rewards are shuffled throughout the game, encouraging players to explore routes, bosses, characters, and objectives they might normally skip.",
     status: "Beta",
-    statusNote: "Testers wanted. Expect rough edges, and please tell us about them.",
+    statusNote: "Testers wanted. Expect rough edges, and please tell me about them.",
     requirements: "Needs Spelunky 2 on Steam, with Modlunky 2 and Playlunky.",
   },
 

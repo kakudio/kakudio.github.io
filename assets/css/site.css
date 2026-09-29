@@ -228,7 +228,7 @@ a.button:active {
 }
 
 .text-link .soon-note::before {
-  content: " · ";
+  content: "· ";
 }
 
 /* Brand line */

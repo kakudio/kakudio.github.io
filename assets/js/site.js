@@ -20,11 +20,10 @@
       el.replaceWith(link);
     } else {
       el.classList.add("is-soon");
-      el.setAttribute("aria-disabled", "true");
       const note = document.createElement("span");
       note.className = "soon-note";
       note.textContent = "coming soon";
-      el.append(note);
+      el.append(" ", note);
     }
   });
 
@@ -38,6 +37,4 @@
     slots[i].replaceChildren(img);
     slots[i].classList.add("is-filled");
   });
-
-  document.documentElement.classList.add("js-ready");
 })();

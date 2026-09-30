@@ -127,6 +127,13 @@ a {
 .tagline {
   max-width: 34ch;
   font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.hero-intro {
+  max-width: 44ch;
+  font-size: clamp(1rem, 0.95rem + 0.4vw, 1.2rem);
   color: var(--muted);
   margin-bottom: 2.25rem;
 }

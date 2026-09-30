@@ -2,7 +2,16 @@
   const config = window.KAKUDIO_CONFIG;
   if (!config) return;
 
-  const isLive = (url) => typeof url === "string" && url.startsWith("https://");
+  const isLive = (key) => {
+    const url = config.links[key];
+    return typeof url === "string" && url.startsWith("https://");
+  };
+
+  const removeWithEmptyParent = (el) => {
+    const parent = el.parentElement;
+    el.remove();
+    if (!parent.children.length && !parent.textContent.trim()) parent.remove();
+  };
 
   document.querySelectorAll("[data-field]").forEach((el) => {
     const value = config.randomizer[el.dataset.field];
@@ -11,29 +20,41 @@
   });
 
   document.querySelectorAll("[data-link]").forEach((el) => {
-    const url = config.links[el.dataset.link];
-    if (isLive(url)) {
-      const link = document.createElement("a");
-      link.className = el.className;
-      link.href = url;
-      link.innerHTML = el.innerHTML;
-      el.replaceWith(link);
+    const { link, unless } = el.dataset;
+    if (isLive(link) && !(unless && isLive(unless))) {
+      el.href = config.links[link];
+      el.hidden = false;
     } else {
-      const note = document.createElement("span");
-      note.className = "soon-note";
-      note.textContent = "coming soon";
-      el.append(" ", note);
+      removeWithEmptyParent(el);
     }
   });
 
-  const slots = document.querySelectorAll("[data-media-slot]");
-  (config.media || []).slice(0, slots.length).forEach((item, i) => {
+  document.querySelectorAll("[data-link-text]").forEach((el) => {
+    const key = el.dataset.linkText;
+    if (!isLive(key)) return;
+    const link = document.createElement("a");
+    link.href = config.links[key];
+    link.textContent = el.textContent;
+    el.replaceWith(link);
+  });
+
+  const media = document.querySelector(".media");
+  const items = config.media || [];
+  if (!media) return;
+  if (!items.length) {
+    media.remove();
+    return;
+  }
+  items.forEach((item) => {
+    const figure = document.createElement("figure");
+    figure.className = "slot";
     const img = document.createElement("img");
     img.src = item.src;
     img.alt = item.alt || "";
     img.loading = "lazy";
     img.decoding = "async";
-    slots[i].replaceChildren(img);
-    slots[i].classList.add("is-filled");
+    figure.append(img);
+    media.append(figure);
   });
+  media.hidden = false;
 })();

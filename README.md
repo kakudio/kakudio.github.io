@@ -7,10 +7,10 @@ Source for [kakudio.dev](https://kakudio.dev), the Kakudio website: one static p
 From the repository root, start any static file server:
 
 ```sh
-python3 -m http.server 8000
+python3 -m http.server 8142
 ```
 
-Then open <http://localhost:8000/>. The 404 page is at <http://localhost:8000/404.html>. Asset paths are root-relative (`/assets/...`), so serve from the repository root rather than opening the files directly.
+Then open <http://localhost:8142/>. The 404 page is at <http://localhost:8142/404.html>. Asset paths are root-relative (`/assets/...`), so serve from the repository root rather than opening the files directly.
 
 ## Where things are configured
 

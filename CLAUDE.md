@@ -2,7 +2,7 @@
 
 Static single-page site served by GitHub Pages from the root of `main`. **Anything merged to `main` goes live** at https://kakudio.dev/.
 
-- Run locally: `python3 -m http.server 8000` from the repo root, open http://localhost:8000/ (and `/404.html`).
+- Run locally: `python3 -m http.server 8142` from the repo root, open http://localhost:8142/ (and `/404.html`).
 - No build step, framework or dependencies. Keep it that way.
 - Randomizer details and all external links live in `config.js`; brand copy, headings and metadata live in `index.html` and must work without JavaScript.
 - Unknown links stay `"PLACEHOLDER"` — never invent a Discord or spelunky.fyi URL.

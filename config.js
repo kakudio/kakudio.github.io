@@ -14,7 +14,7 @@ window.KAKUDIO_CONFIG = {
     download: "https://github.com/kakudio/spelunky2-key-item-randomizer/releases/latest",
     github: "https://github.com/kakudio/spelunky2-key-item-randomizer",
     issues: "https://github.com/kakudio/spelunky2-key-item-randomizer/issues",
-    discord: "PLACEHOLDER",
+    discord: "https://discord.gg/9tXdYSC55W",
     spelunkyFyi: "PLACEHOLDER",
     githubOrg: "https://github.com/kakudio",
   },

@@ -25,7 +25,7 @@ Then open <http://localhost:8000/>. The 404 page is at <http://localhost:8000/40
 | Colours, type, textures, decoration and the wordmark lettering | the active theme, `assets/themes/<game>/` (today `spelunky`) |
 | Which theme a page wears | the theme `<link>` in the `<head>` of `index.html`, `404.html` and `tools/social-preview.html` |
 
-**Placeholders.** A link set to `"PLACEHOLDER"` in `config.js`, or to anything that isn't an `https://` URL, is left off the page entirely. Replace it with the real URL and it appears as a working link; nothing else needs editing. The Discord invite and the spelunky.fyi listing ship as placeholders. While Discord is unset, the beta-testing section points at the mod's GitHub issues instead, and About's closing line shows as plain text; once it is set, both link to Discord.
+**Placeholders.** A link set to `"PLACEHOLDER"` in `config.js`, or to anything that isn't an `https://` URL, is left off the page entirely. Replace it with the real URL and it appears as a working link; nothing else needs editing. The spelunky.fyi listing ships as a placeholder. While Discord is unset, the beta-testing section points at the mod's GitHub issues instead, and About's closing line shows as plain text; once it is set, both link to Discord.
 
 **Media.** Add entries to `media`, e.g. `{ src: "/assets/media/run.gif", alt: "What happens in the clip" }`. They show in order beside Shell Game, the first one wide. With `media` empty, no media area is shown.
 

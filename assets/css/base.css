@@ -148,10 +148,7 @@ a {
 /* Hero */
 
 .hero {
-  min-height: min(92vh, 52rem);
-  display: flex;
-  align-items: center;
-  padding-block: var(--space) calc(var(--space) + 3rem + var(--ground-height));
+  padding-block: var(--space) calc(3rem + var(--ground-height));
   overflow: hidden;
 }
 
@@ -174,7 +171,7 @@ a {
   max-width: 34ch;
   font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
   color: var(--text);
-  margin-bottom: 2.25rem;
+  margin-bottom: 0;
 }
 
 /* Buttons */
@@ -235,7 +232,7 @@ a.button:active {
 /* Project */
 
 .project {
-  padding-block: var(--space);
+  padding-block: 3rem var(--space);
 }
 
 .eyebrow {

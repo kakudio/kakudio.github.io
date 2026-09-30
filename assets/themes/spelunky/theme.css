@@ -154,6 +154,7 @@
 }
 
 .testers::before,
+.about::before,
 .site-footer::before {
   content: "";
   position: absolute;

@@ -148,7 +148,7 @@ a {
 /* Hero */
 
 .hero {
-  padding-block: var(--space) calc(3rem + var(--ground-height));
+  padding-block: var(--space) calc(1rem + var(--ground-height));
   overflow: hidden;
 }
 

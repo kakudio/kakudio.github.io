@@ -7,7 +7,6 @@ window.KAKUDIO_CONFIG = {
     description:
       "Did Sparrow pilfer the Ankh? Has Beg found a plasma cannon? Will you need to go to the afterlife and back for the Arrow of Light? The route you know is gone. The areas you always skip, the bosses you never fight, the quests you've never bothered with: one of them has what you need. Every run has a way to the Cosmic Ocean. You just have to find it.",
     status: "Beta",
-    statusNote: "Testers wanted. Expect rough edges, and please tell me about them.",
     requirements: "Needs Spelunky 2 on Steam, with Modlunky 2 and Playlunky.",
   },
 

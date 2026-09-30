@@ -269,15 +269,6 @@ a.button:active {
   }
 }
 
-.status {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
 .status-badge {
   font-family: var(--font-label);
   font-size: 0.8rem;
@@ -287,6 +278,8 @@ a.button:active {
   border: 2px solid var(--positive);
   border-radius: 2px;
   color: var(--positive);
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 .status-badge:empty {
@@ -294,6 +287,10 @@ a.button:active {
 }
 
 .project-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
   font-size: clamp(1.75rem, 1.35rem + 2vw, 2.75rem);
   margin-bottom: 1.25rem;
 }

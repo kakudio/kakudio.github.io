@@ -7,7 +7,6 @@
   --line: #3d3d3d;
   --text: #f2f2f2;
   --muted: #bdbdbd;
-  --soon: #9e9e9e;
   --accent: #ffd166;
   --accent-ink: #1a1400;
   --positive: #7fd1a8;
@@ -72,7 +71,8 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: var(--font-display);
   font-weight: var(--display-weight);
   letter-spacing: var(--display-tracking);
@@ -82,6 +82,10 @@ h3 {
 
 p {
   margin: 0 0 1em;
+}
+
+[hidden] {
+  display: none !important;
 }
 
 img {
@@ -106,7 +110,6 @@ a {
 }
 
 .hero,
-.brand-line,
 .project,
 .testers,
 .about,
@@ -145,10 +148,7 @@ a {
 /* Hero */
 
 .hero {
-  min-height: min(92vh, 52rem);
-  display: flex;
-  align-items: center;
-  padding-block: var(--space) calc(var(--space) + 3rem + var(--ground-height));
+  padding-block: var(--space) calc(2rem + var(--ground-height));
   overflow: hidden;
 }
 
@@ -171,14 +171,7 @@ a {
   max-width: 34ch;
   font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
   color: var(--text);
-  margin-bottom: 0.75rem;
-}
-
-.hero-intro {
-  max-width: 44ch;
-  font-size: clamp(1rem, 0.95rem + 0.4vw, 1.2rem);
-  color: var(--muted);
-  margin-bottom: 2.25rem;
+  margin-bottom: 0;
 }
 
 /* Buttons */
@@ -224,59 +217,12 @@ a.button:active {
   box-shadow: var(--button-shadow-active);
 }
 
-span.button {
-  background: transparent;
-  border: 2px dashed var(--line);
-  color: var(--soon);
-  box-shadow: none;
-  cursor: not-allowed;
-}
-
-.soon-note {
-  font-family: var(--font-label);
-  font-size: 0.75rem;
-  font-weight: 400;
-  text-transform: var(--label-case);
-  letter-spacing: var(--label-tracking);
-}
-
-.button .soon-note {
-  padding: 0.15rem 0.4rem;
-  border: 1px solid var(--line);
-  border-radius: 2px;
-}
-
 .text-link {
   color: var(--accent);
   font-weight: 600;
 }
 
-span.text-link {
-  color: var(--soon);
-  font-weight: 400;
-}
-
-.text-link .soon-note::before {
-  content: "· ";
-}
-
-/* Brand line */
-
-.brand-line {
-  padding-block: var(--space);
-  border-block: 1px solid var(--line);
-  background: var(--surface-image), var(--surface);
-}
-
-.brand-line p {
-  max-width: 24ch;
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 1.2rem + 4vw, 4.25rem);
-  font-weight: var(--display-weight);
-  letter-spacing: var(--display-tracking);
-  line-height: 1.05;
-}
+/* Social preview */
 
 .shuffled {
   color: var(--accent);
@@ -286,7 +232,7 @@ span.text-link {
 /* Project */
 
 .project {
-  padding-block: var(--space);
+  padding-block: 3rem var(--space);
 }
 
 .eyebrow {
@@ -299,6 +245,17 @@ span.text-link {
   margin-bottom: 1.5rem;
 }
 
+.game-name {
+  font-size: clamp(2.75rem, 1.75rem + 4.5vw, 5rem);
+  padding-bottom: 1rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  border-bottom: 2px solid var(--line);
+}
+
+.project-card + .project-card {
+  margin-top: var(--space);
+}
+
 .project-card {
   display: grid;
   gap: clamp(2rem, 5vw, 4rem);
@@ -306,19 +263,10 @@ span.text-link {
 }
 
 @media (min-width: 60rem) {
-  .project-card {
+  .project-card:has(> .media:not([hidden])) {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
     align-items: start;
   }
-}
-
-.status {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--muted);
-  font-size: 0.95rem;
 }
 
 .status-badge {
@@ -330,6 +278,8 @@ span.text-link {
   border: 2px solid var(--positive);
   border-radius: 2px;
   color: var(--positive);
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 .status-badge:empty {
@@ -337,7 +287,11 @@ span.text-link {
 }
 
 .project-name {
-  font-size: clamp(2.25rem, 1.5rem + 3.5vw, 4rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
+  font-size: clamp(1.75rem, 1.35rem + 2vw, 2.75rem);
   margin-bottom: 1.25rem;
 }
 
@@ -374,40 +328,19 @@ span.text-link {
 }
 
 .slot {
-  position: relative;
   margin: 0;
   aspect-ratio: 16 / 9;
-  display: grid;
-  place-items: center;
-  border: 2px dashed var(--line);
+  border: 2px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface-2);
+  background: #000;
   overflow: hidden;
 }
 
-.slot--wide {
+.slot:first-child {
   grid-column: 1 / -1;
 }
 
-.slot figcaption {
-  font-family: var(--font-label);
-  font-size: 0.75rem;
-  text-transform: var(--label-case);
-  letter-spacing: var(--label-tracking);
-  text-align: center;
-  line-height: 1.6;
-  color: var(--soon);
-  padding: 0.3rem 0.6rem;
-  background: var(--bg);
-  border-radius: 2px;
-}
-
-.slot.is-filled {
-  border-style: solid;
-  background: #000;
-}
-
-.slot.is-filled img {
+.slot img {
   width: 100%;
   height: 100%;
   object-fit: cover;

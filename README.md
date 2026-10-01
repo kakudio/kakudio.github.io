@@ -16,18 +16,20 @@ Then open <http://localhost:8000/>. The 404 page is at <http://localhost:8000/40
 
 | What | Where |
 | --- | --- |
-| Randomizer name, descriptor (the line under the name), description, beta status, requirements line | `config.js` → `randomizer` |
-| Every external link (Download Beta, View on GitHub, Join Discord, spelunky.fyi, GitHub org) | `config.js` → `links` |
+| Randomizer name, descriptor (the line under the name), pitch, beta status, requirements line | `config.js` → `randomizer` |
+| Every external link (Download Beta, View on GitHub, GitHub issues, Join Discord, spelunky.fyi, GitHub org) | `config.js` → `links` |
 | Screenshots and gameplay GIFs | `config.js` → `media`, files in `assets/media/` |
-| Brand copy, headings, beta-tester and About text, footer | `index.html` |
+| Brand copy, headings (including each game), beta-tester and About text, footer | `index.html` |
 | Search, Open Graph and social-card metadata | `<head>` of `index.html` |
 | Layout, spacing, focus rings, reduced motion, and the knobs a theme sets | `assets/css/base.css` |
 | Colours, type, textures, decoration and the wordmark lettering | the active theme, `assets/themes/<game>/` (today `spelunky`) |
 | Which theme a page wears | the theme `<link>` in the `<head>` of `index.html`, `404.html` and `tools/social-preview.html` |
 
-**Placeholders.** A link set to `"PLACEHOLDER"` in `config.js` — or to anything that isn't an `https://` URL — renders as a disabled "coming soon" label instead of a link. Replace it with the real URL and it becomes a working link; nothing else needs editing. The Discord invite and the spelunky.fyi listing ship as placeholders.
+**Placeholders.** A link set to `"PLACEHOLDER"` in `config.js`, or to anything that isn't an `https://` URL, is left off the page entirely. Replace it with the real URL and it appears as a working link; nothing else needs editing. The spelunky.fyi listing ships as a placeholder. While Discord is unset, the beta-testing section points at the mod's GitHub issues instead, and About's closing line shows as plain text; once it is set, both link to Discord.
 
-**Media.** Add up to three entries to `media`, e.g. `{ src: "/assets/media/run.gif", alt: "What happens in the clip" }`. They fill the slots in order (the first is the wide one); empty slots show as "coming soon".
+**Media.** Add entries to `media`, e.g. `{ src: "/assets/media/run.gif", alt: "What happens in the clip" }`. They show in order beside Shell Game, the first one wide. With `media` empty, no media area is shown.
+
+**Projects.** Projects are grouped by game: each game is a `<section class="game">` in `index.html` headed by the game's name, holding one `<article class="project-card">` per mod. Add a mod as another article inside its game; add a game as another section.
 
 **The randomizer repository must be public.** View on GitHub and Download Beta point at [kakudio/spelunky2-key-item-randomizer](https://github.com/kakudio/spelunky2-key-item-randomizer) and its `/releases/latest`. Both 404 for visitors while that repository is private. `/releases/latest` always resolves to the newest release, so new betas need no link change.
 
@@ -44,7 +46,7 @@ assets/themes/spelunky/
   img/           original pixel-art textures and motifs (SVG)
 ```
 
-`theme.css` sets knobs on `:root` and may add decoration — backgrounds, borders, shadows, `@font-face`, and `::before`/`::after` pseudo-elements. The page's sections (`.hero`, `.lost`, `.brand-line`, `.testers`, `.about`, `.site-footer`) are positioned and isolated by the base, so decoration can be placed inside them and layered behind the content with a negative `z-index`; `.ground` is an empty strip along the bottom of the hero and the 404 page, as tall as `--ground-height`. It never changes display, size, margin, padding or grid placement of page content; the base owns those. Animations need no reduced-motion handling of their own: the base stops every animation under `prefers-reduced-motion`. Reference the bundle's files with root-relative paths (`/assets/themes/<game>/...`), and never load anything from a third-party server.
+`theme.css` sets knobs on `:root` and may add decoration — backgrounds, borders, shadows, `@font-face`, and `::before`/`::after` pseudo-elements. The page's sections (`.hero`, `.lost`, `.project`, `.testers`, `.about`, `.site-footer`) are positioned and isolated by the base, so decoration can be placed inside them and layered behind the content with a negative `z-index`; `.ground` is an empty strip along the bottom of the hero and the 404 page, as tall as `--ground-height`. It never changes display, size, margin, padding or grid placement of page content; the base owns those. Animations need no reduced-motion handling of their own: the base stops every animation under `prefers-reduced-motion`. Reference the bundle's files with root-relative paths (`/assets/themes/<game>/...`), and never load anything from a third-party server.
 
 **Adding a theme.** Copy `assets/themes/spelunky/` to `assets/themes/<game>/`, replace its fonts and images, and change the knob values and decoration in its `theme.css`. An empty `theme.css` is valid and shows the base defaults, which is a quick way to check that a theme only changes the look.
 

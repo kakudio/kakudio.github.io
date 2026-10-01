@@ -29,7 +29,6 @@
   --line: #6b4424;
   --text: #f6ead0;
   --muted: #d6c09a;
-  --soon: #b8a07e;
   --accent: #f2c14e;
   --accent-ink: #2a1604;
   --positive: #9bd56e;
@@ -154,8 +153,8 @@
   }
 }
 
-.brand-line::before,
 .testers::before,
+.about::before,
 .site-footer::before {
   content: "";
   position: absolute;
@@ -165,7 +164,6 @@
   pointer-events: none;
 }
 
-.brand-line,
 .testers {
   border-color: #0b0603;
 }
@@ -186,16 +184,6 @@
 
 .status-badge {
   background: rgb(155 213 110 / 0.08);
-}
-
-.slot:not(.is-filled) {
-  background:
-    linear-gradient(rgb(20 12 6 / 0.9), rgb(20 12 6 / 0.9)),
-    url("/assets/themes/spelunky/img/rock.svg") 0 0 / 192px 32px;
-}
-
-.slot figcaption {
-  border: 2px solid var(--line);
 }
 
 .feedback-list li {

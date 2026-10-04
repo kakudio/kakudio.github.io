@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report a bug · Kakudio</title>
+  <meta name="description" content="Found a bug in Shell Game or another Kakudio mod? Send the run log and what went wrong with the Kakudio bug reporter for Windows, or straight to the report service with one request. No account needed.">
+  <link rel="canonical" href="https://kakudio.dev/bug-report/">
+  <meta name="theme-color" content="#150d07">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kakudio">
+  <meta property="og:title" content="Report a bug · Kakudio">
+  <meta property="og:description" content="Send a Kakudio mod's run log and what went wrong, with the bug reporter for Windows or with one request to the report service. No account needed.">
+  <meta property="og:url" content="https://kakudio.dev/bug-report/">
+  <meta property="og:image" content="https://kakudio.dev/assets/img/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Kakudio wordmark in gold pixel lettering in a torch-lit cave, with the line: Go deeper into the games you love.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/themes/spelunky/theme.css">
+</head>
+<body>
+  <a class="skip-link" href="#reporter">Skip to the bug reporter</a>
+
+  <header class="hero hero--page">
+    <div class="wrap">
+      <p class="eyebrow"><a href="/">Kakudio</a></p>
+      <h1 class="page-title">Report a bug</h1>
+      <p class="tagline">Something broke in your run? Send its run log and tell me what went wrong. No account needed.</p>
+    </div>
+    <div class="ground" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section class="guide" id="reporter" aria-labelledby="reporter-heading">
+      <div class="wrap prose">
+        <h2 id="reporter-heading">With the bug reporter</h2>
+        <p>The Kakudio bug reporter is a Windows app that finds your recent runs and sends the one you pick. It is a single program: no installer, no account.</p>
+        <div class="actions">
+          <a class="button button--primary" href="https://bug-reports.kakudio.workers.dev/download/kakudio-bug-reporter.exe">Download the bug reporter</a>
+        </div>
+        <p class="note">The first time you run it, Windows SmartScreen asks whether to run an unrecognized app. Choose <strong>More info → Run anyway</strong>.</p>
+        <ol class="steps">
+          <li><strong>Run it.</strong> It finds your Spelunky 2 folder on its own; if it can't, it asks once and remembers.</li>
+          <li><strong>Pick the run</strong> that went wrong. Runs are listed newest first.</li>
+          <li><strong>Describe what went wrong:</strong> what you were doing, what you expected and what happened instead.</li>
+          <li><strong>Send</strong> the report.</li>
+          <li><strong>Keep the reference</strong> it shows, such as <code>ABCD-1234</code>.</li>
+        </ol>
+        <p>If the report can't be sent, the app says why and keeps your description so you can try again.</p>
+      </div>
+    </section>
+
+    <section class="guide" id="mods" aria-labelledby="mods-heading">
+      <div class="wrap prose">
+        <h2 id="mods-heading">Mods it covers</h2>
+        <p>Every run of a covered mod writes a run log, a plain text file, into the mod's own folder under <code>Mods/Data/</code> in your Spelunky 2 game folder. On Steam that is usually <code>C:\Program Files (x86)\Steam\steamapps\common\Spelunky 2</code>. The newest file is your most recent run.</p>
+
+        <article class="mod" aria-labelledby="shell-game-heading">
+          <h3 id="shell-game-heading">Shell Game <span class="mod-game">Spelunky 2</span></h3>
+          <dl class="facts">
+            <dt>Run logs</dt>
+            <dd>the <code>.txt</code> files in <code>Mods/Data/ShellGame/run_reports/</code></dd>
+            <dt>File names</dt>
+            <dd><code>*-ShellGame-randomizer-*-run-*-*.txt</code></dd>
+            <dt>First line</dt>
+            <dd><code>Shell Game run report</code></dd>
+            <dt><code>mod_id</code></dt>
+            <dd><code>shell-game</code></dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section class="guide" id="without-the-app" aria-labelledby="api-heading">
+      <div class="wrap prose">
+        <h2 id="api-heading">Without the app</h2>
+        <p>You, or a script or agent on your machine, can send the same report straight to the report service. There is no account or key.</p>
+        <p>Send <code>POST https://bug-reports.kakudio.workers.dev/api/reports</code> with a JSON body of four fields:</p>
+        <dl class="facts">
+          <dt><code>mod_id</code></dt>
+          <dd>the mod's id from <a href="#mods">the list above</a></dd>
+          <dt><code>description</code></dt>
+          <dd>what went wrong, in your words</dd>
+          <dt><code>log_name</code></dt>
+          <dd>the run log's file name, without its folder</dd>
+          <dt><code>log</code></dt>
+          <dd>the whole run log, as text</dd>
+        </dl>
+        <p>For example, for a Shell Game run:</p>
+        <pre><code>curl https://bug-reports.kakudio.workers.dev/api/reports \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "mod_id": "shell-game",
+    "description": "Sparrow never showed up, so I could not reach the Ankh.",
+    "log_name": "20261002-140316-ShellGame-randomizer-126973-run-8288215085007426999,338101898040651254-2.txt",
+    "log": "Shell Game run report\nRandomizer seed: 126973\n…"
+  }'</code></pre>
+        <p>Put the whole file in <code>log</code>, not just its start. It goes in as a JSON string, so its line breaks, quotes and backslashes need escaping; any JSON library does that for you.</p>
+        <p>A report that is taken gets <code>201</code> and its reference:</p>
+        <pre><code>{"reference":"ABCD-1234"}</code></pre>
+        <p>Anything else gets an error status and a message written for you, to show as it is:</p>
+        <pre><code>{"error":"This run log is too large to send (the limit is 1 MB)."}</code></pre>
+      </div>
+    </section>
+
+    <section class="guide" id="refused" aria-labelledby="refused-heading">
+      <div class="wrap prose">
+        <h2 id="refused-heading">When a report is refused</h2>
+        <p>The app and the service turn a report away when:</p>
+        <ul class="refusals">
+          <li>the run log's file name doesn't match its mod's run logs (case doesn't matter);</li>
+          <li>the run log isn't UTF-8 plain text;</li>
+          <li>its first line isn't its mod's run-log header, for Shell Game <code>Shell Game run report</code>;</li>
+          <li>the description is empty or over 20,000 characters;</li>
+          <li>the run log is empty or over 1 MB;</li>
+          <li>the mod isn't on <a href="#mods">the list</a>;</li>
+          <li>one sender has tried more than 5 reports in a minute, sent or not;</li>
+          <li>the service is full for the day, or full overall.</li>
+        </ul>
+        <p>The message says which. Pick another run or shorten the description and send again, or, if the service is busy or full, try again later.</p>
+      </div>
+    </section>
+
+    <section class="guide" id="reference" aria-labelledby="reference-heading">
+      <div class="wrap prose">
+        <h2 id="reference-heading">Keep your reference</h2>
+        <p>Every report that gets through has a reference, eight letters and digits such as <code>ABCD-1234</code>, shown by the app or returned by the service. Keep it: it is how your report is found again when you talk about the bug.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <p class="footer-mark">Kakudio</p>
+      <p><a class="text-link" href="/">Back to kakudio.dev</a></p>
+      <p class="legal">© 2026 Kakudio. Spelunky and related properties belong to their respective owners. Shell Game is an unofficial mod; Kakudio is not affiliated with or endorsed by Mossmouth.</p>
+    </div>
+  </footer>
+</body>
+</html>

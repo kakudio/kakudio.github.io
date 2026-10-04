@@ -1,6 +1,6 @@
 # kakudio.github.io
 
-Source for [kakudio.dev](https://kakudio.dev), the Kakudio website: one static page that introduces Kakudio and sends people to the beta of Shell Game, a key item randomizer for Spelunky 2. Plain HTML, CSS and a little JavaScript — no framework, no build step.
+Source for [kakudio.dev](https://kakudio.dev), the Kakudio website: one static page that introduces Kakudio and sends people to the beta of Shell Game, a key item randomizer for Spelunky 2. Plain HTML and CSS — no JavaScript, no framework, no build step.
 
 ## Run it locally
 
@@ -12,22 +12,37 @@ python3 -m http.server 8000
 
 Then open <http://localhost:8000/>. The 404 page is at <http://localhost:8000/404.html>. Asset paths are root-relative (`/assets/...`), so serve from the repository root rather than opening the files directly.
 
-## Where things are configured
+## Where things live
+
+The site ships no JavaScript. Every link and every piece of content is written into the HTML of the page that shows it, so it appears exactly as served.
 
 | What | Where |
 | --- | --- |
-| Randomizer name, descriptor (the line under the name), pitch, beta status, requirements line | `config.js` → `randomizer` |
-| Every external link (Download Beta, View on GitHub, GitHub issues, Join Discord, spelunky.fyi, GitHub org) | `config.js` → `links` |
-| Screenshots and gameplay GIFs | `config.js` → `media`, files in `assets/media/` |
-| Brand copy, headings (including each game), beta-tester and About text, footer | `index.html` |
-| Search, Open Graph and social-card metadata | `<head>` of `index.html` |
+| Homepage: brand copy, headings (including each game), Shell Game's name, Beta badge, descriptor, pitch and requirements line, beta-tester and About text, footer | `index.html` |
+| Homepage links (Download Beta, View on GitHub, Join Discord, About's closing line, Kakudio on GitHub) | `href`s in `index.html` |
+| 404 page copy and its link home | `404.html` |
+| Search, Open Graph and social-card metadata | `<head>` of each page |
 | Layout, spacing, focus rings, reduced motion, and the knobs a theme sets | `assets/css/base.css` |
 | Colours, type, textures, decoration and the wordmark lettering | the active theme, `assets/themes/<game>/` (today `spelunky`) |
 | Which theme a page wears | the theme `<link>` in the `<head>` of `index.html`, `404.html` and `tools/social-preview.html` |
 
-**Placeholders.** A link set to `"PLACEHOLDER"` in `config.js`, or to anything that isn't an `https://` URL, is left off the page entirely. Replace it with the real URL and it appears as a working link; nothing else needs editing. The spelunky.fyi listing ships as a placeholder. While Discord is unset, the beta-testing section points at the mod's GitHub issues instead, and About's closing line shows as plain text; once it is set, both link to Discord.
+**Links not yet known.** A link with no real URL yet is left out of the HTML entirely — never added with a made-up or placeholder URL. Today that is the spelunky.fyi listing. When it exists, add it to `index.html` below Shell Game's buttons:
 
-**Media.** Add entries to `media`, e.g. `{ src: "/assets/media/run.gif", alt: "What happens in the clip" }`. They show in order beside Shell Game, the first one wide. With `media` empty, no media area is shown.
+```html
+<p class="also-on"><a class="text-link" href="https://spelunky.fyi/...">Listing on spelunky.fyi</a></p>
+```
+
+**Links that repeat.** The Discord invite appears three times in `index.html` (Shell Game's buttons, *Come play with us* and About's closing line). Change all of them together.
+
+**Media.** To show screenshots or gameplay GIFs beside Shell Game, put the files in `assets/media/` and add a media group as the last child of its `<article class="project-card">`, one `<figure class="slot">` per item; the first is shown wide, and the card switches to two columns on wide screens:
+
+```html
+<div class="media" role="group" aria-label="Screenshots and gameplay">
+  <figure class="slot"><img src="/assets/media/run.gif" alt="What happens in the clip" loading="lazy" decoding="async"></figure>
+</div>
+```
+
+Leave the group out while there is nothing to show.
 
 **Projects.** Projects are grouped by game: each game is a `<section class="game">` in `index.html` headed by the game's name, holding one `<article class="project-card">` per mod. Add a mod as another article inside its game; add a game as another section.
 

@@ -263,7 +263,7 @@ a.button:active {
 }
 
 @media (min-width: 60rem) {
-  .project-card:has(> .media:not([hidden])) {
+  .project-card:has(> .media) {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
     align-items: start;
   }
@@ -295,7 +295,7 @@ a.button:active {
   margin-bottom: 1.25rem;
 }
 
-.project-name:has(+ .project-descriptor:not([hidden])) {
+.project-name:has(+ .project-descriptor) {
   margin-bottom: 0.5rem;
 }
 

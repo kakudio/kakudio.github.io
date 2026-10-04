@@ -124,20 +124,16 @@
 
           <h3>1. Find the run logs</h3>
           <p>Every run of a covered mod writes a run log, a plain text file, into the mod's own folder inside the Spelunky 2 game folder. On Steam the game folder is usually <code>C:\Program Files (x86)\Steam\steamapps\common\Spelunky 2</code>. If Spelunky 2 is in another Steam library, it is there instead: in Steam, right-click Spelunky 2 and choose Manage → Browse local files. If it can't be found, ask the player for its path.</p>
-          <div class="table-scroll" role="region" aria-labelledby="mods-caption" tabindex="0">
-            <table class="mods">
-              <caption id="mods-caption">Covered mods</caption>
-              <thead>
-                <tr><th scope="col">Mod</th><th scope="col"><code>mod_id</code></th><th scope="col">Folder</th><th scope="col">File names</th><th scope="col">First line</th></tr>
-              </thead>
-              <tbody>
-                <tr><th scope="row">Shell Game</th><td><code>shell-game</code></td><td><code>Mods\<wbr>Data\<wbr>ShellGame\<wbr>run_reports</code></td><td><code>*-ShellGame-randomizer-*-run-*-*.txt</code></td><td><code>Shell Game run report</code></td></tr>
-              </tbody>
-            </table>
-          </div>
+          <p>Covered mods:</p>
+          <ul class="mod-list">
+            <li><strong>Shell Game</strong><br>
+              <code>mod_id</code>: <code>shell-game</code><br>
+              Folder: <code>Mods\<wbr>Data\<wbr>ShellGame\<wbr>run_reports</code><br>
+              File names: <code>*-ShellGame-randomizer-*-run-*-*.txt</code></li>
+          </ul>
 
           <h3>2. Pick the run log for the run</h3>
-          <p>In the mod's folder, take the run log of the run where the bug happened: a file whose name matches the mod's pattern (case doesn't matter). Each name starts with the run's date and time. Its first line must be exactly the mod's first line; if it isn't, the service won't take it, so tell the player and don't send it.</p>
+          <p>In the mod's folder, take the run log of the run where the bug happened: a file whose name matches the mod's pattern (case doesn't matter). Each name starts with the run's date and time.</p>
 
           <h3>3. Send it</h3>
           <p>Send <code>POST https://bug-reports.kakudio.workers.dev/api/reports</code> with <code>Content-Type: application/json</code> and a JSON body of four fields:</p>

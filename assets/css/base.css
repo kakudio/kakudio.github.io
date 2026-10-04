@@ -520,6 +520,7 @@ button.button {
 }
 
 .prose > p,
+.prose > .instructions > p,
 .prose li,
 .prose dd {
   color: var(--muted);

@@ -125,8 +125,20 @@ function setUpForm(form, mods) {
 
   let runs = [];
   let chosen = null;
+  let sending = false;
+  let sent = false;
+
+  function updateSend() {
+    send.disabled = sending || sent;
+  }
+
+  function allowResend() {
+    sent = false;
+    updateSend();
+  }
 
   function choose(newRuns) {
+    allowResend();
     runs = newRuns;
     chosen = runs[0] ?? null;
     runList.replaceChildren(
@@ -203,7 +215,10 @@ function setUpForm(form, mods) {
 
   runList.addEventListener("change", (event) => {
     chosen = runs[Number(event.target.value)] ?? null;
+    allowResend();
   });
+
+  description.addEventListener("input", allowResend);
 
   form.addEventListener("dragover", (event) => {
     if (!event.dataTransfer.types.includes("Files")) return;
@@ -223,7 +238,7 @@ function setUpForm(form, mods) {
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    if (send.disabled) return;
+    if (sending || sent) return;
     if (!chosen) {
       show(sendStatus, "no-run");
       form.querySelector('[data-pick="folder"]').focus();
@@ -236,36 +251,43 @@ function setUpForm(form, mods) {
     }
 
     const file = chosen;
-    let run;
+    sending = true;
+    updateSend();
     try {
-      run = await readRunLog(file, mods);
-    } catch (error) {
-      if (!(error instanceof Refused)) throw error;
-      show(sendStatus, null);
-      show(pickStatus, error.message, { name: file.name });
-      return;
-    }
+      let run;
+      try {
+        run = await readRunLog(file, mods);
+      } catch (error) {
+        if (!(error instanceof Refused)) throw error;
+        show(sendStatus, null);
+        show(pickStatus, error.message, { name: file.name });
+        return;
+      }
 
-    send.disabled = true;
-    show(sendStatus, "sending");
-    try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mod_id: run.mod.id, description: description.value, log_name: file.name, log: run.log }),
-      });
+      show(sendStatus, "sending");
+      let response;
+      try {
+        response = await fetch(form.action, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mod_id: run.mod.id, description: description.value, log_name: file.name, log: run.log }),
+        });
+      } catch {
+        show(sendStatus, "no-answer");
+        return;
+      }
       const answer = await response.json().catch(() => ({}));
       if (response.status === 201 && typeof answer.reference === "string" && answer.reference) {
+        sent = true;
         show(sendStatus, "sent", { reference: answer.reference });
       } else if (response.status !== 201 && typeof answer.error === "string" && answer.error.trim()) {
         show(sendStatus, "refused", { error: answer.error });
       } else {
         show(sendStatus, "no-reason");
       }
-    } catch {
-      show(sendStatus, "no-answer");
     } finally {
-      send.disabled = false;
+      sending = false;
+      updateSend();
     }
   });
 }

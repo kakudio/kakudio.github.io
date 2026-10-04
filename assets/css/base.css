@@ -212,15 +212,27 @@ a {
   color: var(--accent-ink);
 }
 
-a.button:hover {
+a.button:hover,
+button.button:hover:not(:disabled) {
   border-color: var(--button-hover-border);
   transform: translateY(-2px);
   box-shadow: var(--button-shadow-hover);
 }
 
-a.button:active {
+a.button:active,
+button.button:active:not(:disabled) {
   transform: translateY(2px);
   box-shadow: var(--button-shadow-active);
+}
+
+button.button {
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: progress;
 }
 
 .text-link {
@@ -602,6 +614,175 @@ pre {
 
 pre code {
   font-size: inherit;
+}
+
+.copy-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose .copy-status {
+  margin: 0;
+  color: var(--positive);
+}
+
+.prose > .notice {
+  margin-top: 2rem;
+  padding: 1rem clamp(1rem, 4vw, 1.5rem);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-image), var(--surface);
+  color: var(--text);
+}
+
+.report-form {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: 2rem;
+  padding: 1.25rem clamp(1rem, 4vw, 1.75rem);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-image), var(--surface);
+}
+
+.report-form fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.report-form legend,
+.report-form label[for] {
+  display: block;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.report-form .actions {
+  margin: 0;
+}
+
+.report-form .pick {
+  padding: 1rem;
+  border: 2px dashed var(--line);
+  border-radius: var(--radius);
+}
+
+.report-form .pick--dragging {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+
+.report-form .pick legend {
+  float: left;
+  width: 100%;
+}
+
+.report-form .pick legend + * {
+  clear: left;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.message {
+  margin: 1rem 0 0;
+  color: var(--text);
+}
+
+.message--error {
+  color: var(--highlight);
+}
+
+.report-form .runs {
+  margin-top: 1rem;
+}
+
+.prose .run-list {
+  display: grid;
+  gap: 0.4rem;
+  max-height: 22rem;
+  margin: 0;
+  padding: 0.25rem;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.prose .run-list li {
+  margin: 0;
+  color: var(--text);
+}
+
+.run-list label {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.run-list label:has(:checked) {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+
+.run-list input {
+  grid-row: span 2;
+  margin: 0.3em 0 0;
+  accent-color: var(--accent);
+}
+
+.run-name {
+  font-family: var(--font-code);
+  font-size: 0.875em;
+  overflow-wrap: anywhere;
+}
+
+.run-list time {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.report-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 9rem;
+  padding: 0.75rem;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--code-bg);
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+}
+
+.sent {
+  margin-top: 1rem;
+  padding: 1rem clamp(1rem, 4vw, 1.25rem);
+  border: 2px solid var(--positive);
+  border-radius: var(--radius);
+}
+
+.sent p:last-child {
+  margin-bottom: 0;
+}
+
+.reference {
+  font-family: var(--font-code);
+  font-size: 1.25em;
+  color: var(--accent);
+  white-space: nowrap;
 }
 
 /* 404 */

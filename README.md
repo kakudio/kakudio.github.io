@@ -1,6 +1,6 @@
 # kakudio.github.io
 
-Source for [kakudio.dev](https://kakudio.dev), the Kakudio website: a static homepage that introduces Kakudio and sends people to the beta of Shell Game, a key item randomizer for Spelunky 2, and a page that tells players how to report bugs in Kakudio's mods. Plain HTML and CSS — no JavaScript, no framework, no build step.
+Source for [kakudio.dev](https://kakudio.dev), the Kakudio website: a static homepage that introduces Kakudio and sends people to the beta of Shell Game, a key item randomizer for Spelunky 2, and a page that tells players how to report bugs in Kakudio's mods. Plain HTML and CSS, plus one small script for the bug-report form — no framework, no build step.
 
 ## Run it locally
 
@@ -14,13 +14,14 @@ Then open <http://localhost:8000/>. The bug-reporting page is at <http://localho
 
 ## Where things live
 
-The site ships no JavaScript. Every link and every piece of content is written into the HTML of the page that shows it, so it appears exactly as served.
+The report form on `/bug-report/` is the one piece of JavaScript on the site; every other page ships none. Every link and every piece of content — the form's labels and messages included — is written into the HTML of the page that shows it, so it appears exactly as served.
 
 | What | Where |
 | --- | --- |
 | Homepage: brand copy, headings (including each game), Shell Game's name, Beta badge, descriptor, pitch and requirements line, beta-tester and About text, footer | `index.html` |
 | Homepage links (Download Beta, View on GitHub, Join Discord, Report bugs that you find, About's closing line, Kakudio on GitHub) | `href`s in `index.html` |
-| Bug-reporting page: where run logs live, the report service's URLs and rules, the agent instructions, and the mods it covers | `bug-report/index.html`, served at `/bug-report/` |
+| Bug-reporting page: where run logs live, the report form and all its copy, the report service's URLs and rules, the agent instructions, and the mods it covers | `bug-report/index.html`, served at `/bug-report/` |
+| The report form's behaviour: choosing a run, checking it, sending it, and the copy buttons | `bug-report/report-form.js`, loaded only by `bug-report/index.html` |
 | 404 page copy and its link home | `404.html` |
 | Search, Open Graph and social-card metadata | `<head>` of each page |
 | Layout, spacing, focus rings, reduced motion, and the knobs a theme sets | `assets/css/base.css` |
@@ -46,6 +47,8 @@ The site ships no JavaScript. Every link and every piece of content is written i
 Leave the group out while there is nothing to show.
 
 **Bug reports.** `/bug-report/` is the public face of the Kakudio report service (`https://bug-reports.kakudio.workers.dev`); its address is linked from the service and from Shell Game, so it doesn't move. Everything it says about the service restates kakudio/bug-reports `service/README.md` and `service/src/submit.ts`, and where they disagree the service wins. The page lists the covered mods by hand, copied from the service's `GET /api/mods`: when a mod is added to the service's list, add an `<article class="mod">` for it under *Mods it covers*, with its run-log folder, file names, first line and `mod_id`, and add the same to the agent instructions block (`#agent-instructions`), which restates the service and the mod list as plain text and must agree with them.
+
+**The report form.** `bug-report/report-form.js` is a hand-written script with no dependencies. It enhances the form already in `bug-report/index.html`: it reads the covered mods from the service's `GET /api/mods` (the URL in the form's `data-mods`) each time the page loads, so a new mod's run logs are recognised without changing the script, and posts to the form's `action`. It shows and hides the messages written in the HTML rather than writing its own. Its checks on a run log's name, first line, encoding and size mirror kakudio/bug-reports `service/src/mods.ts` and `service/src/submit.ts`, and only spare the player a pointless upload; the service decides. The service answers cross-origin requests only from the origins it lists in kakudio/bug-reports `service/src/cors.ts`, so the form can't send from `python3 -m http.server` unless the service is also run locally (`wrangler dev` in kakudio/bug-reports).
 
 **Projects.** Projects are grouped by game: each game is a `<section class="game">` in `index.html` headed by the game's name, holding one `<article class="project-card">` per mod. Add a mod as another article inside its game; add a game as another section.
 

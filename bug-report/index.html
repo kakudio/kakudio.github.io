@@ -25,6 +25,7 @@
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/base.css">
   <link rel="stylesheet" href="/assets/themes/spelunky/theme.css">
+  <script src="/bug-report/report-form.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#report">Skip to sending a report</a>
@@ -44,8 +45,68 @@
         <p>A report is the run log of the run that went wrong and a description of what happened. No account needed.</p>
         <p>On Steam, Shell Game's run logs are in this folder:</p>
         <pre id="run-log-path">C:\Program Files (x86)\Steam\steamapps\common\Spelunky 2\Mods\Data\ShellGame\run_reports</pre>
+        <div class="copy-row" hidden>
+          <button class="button" type="button" data-copy="run-log-path">Copy the folder path</button>
+          <p class="copy-status" role="status"><span data-copied hidden>Copied the folder path.</span><span data-copy-failed hidden>Couldn't copy. Select the path and copy it yourself.</span></p>
+        </div>
         <p>If Spelunky 2 is in another Steam library, find its folder from Steam: right-click <strong>Spelunky 2</strong>, choose <strong>Manage → Browse local files</strong>, then open <code>Mods\Data\ShellGame\run_reports</code>.</p>
         <p>When you pick the run log, you can paste the folder's path into the file picker's address bar to go straight there. The newest file is your most recent run.</p>
+
+        <p class="notice" id="form-needs-js">The report form needs JavaScript, which is off or blocked here. You can still send a report <a href="#service">from a script or agent</a>, or give an agent <a href="#agent">the instructions below</a>.</p>
+        <p class="notice" id="form-loading" role="status" hidden>Connecting to the report service…</p>
+        <p class="notice" id="form-unavailable" role="alert" hidden>The form can't reach the report service right now. Try again later, or send a report <a href="#service">from a script or agent</a> or with <a href="#agent">the instructions for an agent</a>.</p>
+
+        <form class="report-form" id="report-form" action="https://bug-reports.kakudio.workers.dev/api/reports" method="post" data-mods="https://bug-reports.kakudio.workers.dev/api/mods" hidden novalidate>
+          <fieldset class="pick" id="pick">
+            <legend>The run that went wrong</legend>
+            <p class="hint">Choose the <code>run_reports</code> folder to list its runs, or choose or drop one run log here.</p>
+            <div class="actions">
+              <button class="button button--primary" type="button" data-pick="folder">Choose the folder</button>
+              <button class="button" type="button" data-pick="file">Choose a file</button>
+            </div>
+            <input type="file" id="folder-input" webkitdirectory multiple hidden>
+            <input type="file" id="file-input" accept=".txt,text/plain" hidden>
+
+            <div class="pick-status" role="status">
+              <p class="message" data-message="listed" hidden>Found <span data-slot="count"></span> run logs, listed newest first. The newest is chosen; pick another if that isn't the run.</p>
+              <p class="message" data-message="chosen" hidden>Chosen: <span data-slot="name"></span>.</p>
+              <p class="message message--error" data-message="no-runs" hidden>There are no run logs in what you chose. Choose the <code>run_reports</code> folder shown above, or choose the run log itself.</p>
+              <p class="message message--error" data-message="not-run-log" hidden><span data-slot="name"></span> isn't a run log of a mod listed below, so it can't be sent. Choose a file from the <code>run_reports</code> folder.</p>
+              <p class="message message--error" data-message="not-text" hidden><span data-slot="name"></span> isn't UTF-8 plain text, so it can't be sent. Pick another run.</p>
+              <p class="message message--error" data-message="empty" hidden><span data-slot="name"></span> is empty, so there is nothing to send. Pick another run.</p>
+              <p class="message message--error" data-message="too-large" hidden><span data-slot="name"></span> is over 1 MB, too large to send. Pick another run.</p>
+              <p class="message message--error" data-message="unreadable" hidden><span data-slot="name"></span> couldn't be read. Choose it again.</p>
+            </div>
+
+            <fieldset class="runs" id="runs" hidden>
+              <legend>Runs, newest first</legend>
+              <ul class="run-list" id="run-list"></ul>
+            </fieldset>
+          </fieldset>
+
+          <div class="field">
+            <label for="description">What went wrong</label>
+            <p class="hint" id="description-hint">What you did, what you expected, and what happened instead.</p>
+            <textarea id="description" name="description" rows="6" maxlength="20000" aria-describedby="description-hint"></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="button button--primary" type="submit" id="send">Send report</button>
+          </div>
+
+          <div class="send-status" role="status">
+            <p class="message" data-message="sending" hidden>Sending…</p>
+            <div class="sent" data-message="sent" hidden>
+              <p>Report sent. Your reference is <strong class="reference" data-slot="reference"></strong>.</p>
+              <p>Keep it: it is how your report is found again when you talk about the bug.</p>
+            </div>
+            <p class="message message--error" data-message="no-run" hidden>Choose the run log to send first.</p>
+            <p class="message message--error" data-message="no-description" hidden>Describe what went wrong before sending.</p>
+            <p class="message message--error" data-message="refused" hidden data-slot="error"></p>
+            <p class="message message--error" data-message="no-answer" hidden>The report wasn't sent: the report service couldn't be reached. Check your connection and send it again.</p>
+            <p class="message message--error" data-message="no-reason" hidden>The report wasn't sent: the report service turned it away without saying why. Try again later.</p>
+          </div>
+        </form>
       </div>
     </section>
 
@@ -106,6 +167,10 @@
       <div class="wrap prose">
         <h2 id="agent-heading">Instructions for an agent</h2>
         <p>To have an agent on your machine send a report for you, give it these instructions exactly as shown, along with what went wrong.</p>
+        <div class="copy-row" hidden>
+          <button class="button" type="button" data-copy="agent-instructions">Copy instructions for your agent</button>
+          <p class="copy-status" role="status"><span data-copied hidden>Copied the instructions.</span><span data-copy-failed hidden>Couldn't copy. Select the instructions and copy them yourself.</span></p>
+        </div>
         <pre id="agent-instructions">Send a bug report for a Kakudio mod on my behalf.
 
 1. Find the run logs. Each covered mod writes one plain-text run log per run

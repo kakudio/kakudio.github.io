@@ -600,6 +600,49 @@ pre code {
   flex: 1 1 16rem;
 }
 
+.table-scroll {
+  margin: 0 0 1.25rem;
+  overflow-x: auto;
+}
+
+.mods {
+  min-width: 40rem;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.mods caption {
+  margin-bottom: 0.5rem;
+  text-align: left;
+  font-weight: 700;
+}
+
+.mods th,
+.mods td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.mods thead th {
+  background: var(--surface);
+}
+
+.mods td {
+  color: var(--muted);
+}
+
+.mods code {
+  overflow-wrap: normal;
+}
+
+.mods th,
+.mods td:nth-child(2),
+.mods td:last-child {
+  white-space: nowrap;
+}
+
 .prose .copy-status {
   margin: 0;
   color: var(--positive);

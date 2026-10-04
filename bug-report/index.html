@@ -136,8 +136,8 @@
             </table>
           </div>
 
-          <h3>2. Pick the newest run log</h3>
-          <p>In the mod's folder, take the file whose name matches the mod's pattern (case doesn't matter) and that was modified last, unless the player names another run. Its first line must be exactly the mod's first line; if it isn't, the service won't take it, so tell the player and don't send it.</p>
+          <h3>2. Pick the run log for the run</h3>
+          <p>In the mod's folder, take the run log of the run where the bug happened: a file whose name matches the mod's pattern (case doesn't matter). Each name starts with the run's date and time. Its first line must be exactly the mod's first line; if it isn't, the service won't take it, so tell the player and don't send it.</p>
 
           <h3>3. Send it</h3>
           <p>Send <code>POST https://bug-reports.kakudio.workers.dev/api/reports</code> with <code>Content-Type: application/json</code> and a JSON body of four fields:</p>

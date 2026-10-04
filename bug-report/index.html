@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Report a bug · Kakudio</title>
-  <meta name="description" content="Found a bug in Shell Game or another Kakudio mod? Send the run log and what went wrong with the Kakudio bug reporter for Windows, or straight to the report service with one request. No account needed.">
+  <meta name="description" content="Found a bug in Shell Game or another Kakudio mod? Send the run log and what went wrong from your browser, or have a script or agent send it to the report service with one request. No account needed.">
   <link rel="canonical" href="https://kakudio.dev/bug-report/">
   <meta name="theme-color" content="#150d07">
   <meta name="color-scheme" content="dark">
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kakudio">
   <meta property="og:title" content="Report a bug · Kakudio">
-  <meta property="og:description" content="Send a Kakudio mod's run log and what went wrong, with the bug reporter for Windows or with one request to the report service. No account needed.">
+  <meta property="og:description" content="Send a Kakudio mod's run log and what went wrong from your browser, or with one request to the report service. No account needed.">
   <meta property="og:url" content="https://kakudio.dev/bug-report/">
   <meta property="og:image" content="https://kakudio.dev/assets/img/social-preview.png">
   <meta property="og:image:width" content="1200">
@@ -27,34 +27,25 @@
   <link rel="stylesheet" href="/assets/themes/spelunky/theme.css">
 </head>
 <body>
-  <a class="skip-link" href="#reporter">Skip to the bug reporter</a>
+  <a class="skip-link" href="#report">Skip to sending a report</a>
 
   <header class="hero hero--page">
     <div class="wrap">
       <p class="eyebrow"><a href="/">Kakudio</a></p>
       <h1 class="page-title">Report a bug</h1>
-      <p class="tagline">Something broke in your run? Send its run log and tell me what went wrong. No account needed.</p>
     </div>
     <div class="ground" aria-hidden="true"></div>
   </header>
 
   <main>
-    <section class="guide" id="reporter" aria-labelledby="reporter-heading">
+    <section class="guide" id="report" aria-labelledby="report-heading">
       <div class="wrap prose">
-        <h2 id="reporter-heading">With the bug reporter</h2>
-        <p>The Kakudio bug reporter is a Windows app that finds your recent runs and sends the one you pick. It is a single program: no installer, no account.</p>
-        <div class="actions">
-          <a class="button button--primary" href="https://bug-reports.kakudio.workers.dev/download/kakudio-bug-reporter.exe">Download the bug reporter</a>
-        </div>
-        <p class="note">The first time you run it, Windows SmartScreen asks whether to run an unrecognized app. Choose <strong>More info → Run anyway</strong>.</p>
-        <ol class="steps">
-          <li><strong>Run it.</strong> It finds your Spelunky 2 folder on its own; if it can't, it asks once and remembers.</li>
-          <li><strong>Pick the run</strong> that went wrong. Runs are listed newest first.</li>
-          <li><strong>Describe what went wrong:</strong> what you were doing, what you expected and what happened instead.</li>
-          <li><strong>Send</strong> the report.</li>
-          <li><strong>Keep the reference</strong> it shows, such as <code>ABCD-1234</code>.</li>
-        </ol>
-        <p>If the report can't be sent, the app says why and keeps your description so you can try again.</p>
+        <h2 id="report-heading">Send a report</h2>
+        <p>A report is the run log of the run that went wrong and a description of what happened. No account needed.</p>
+        <p>On Steam, Shell Game's run logs are in this folder:</p>
+        <pre id="run-log-path">C:\Program Files (x86)\Steam\steamapps\common\Spelunky 2\Mods\Data\ShellGame\run_reports</pre>
+        <p>If Spelunky 2 is in another Steam library, find its folder from Steam: right-click <strong>Spelunky 2</strong>, choose <strong>Manage → Browse local files</strong>, then open <code>Mods\Data\ShellGame\run_reports</code>.</p>
+        <p>When you pick the run log, you can paste the folder's path into the file picker's address bar to go straight there. The newest file is your most recent run.</p>
       </div>
     </section>
 
@@ -79,10 +70,10 @@
       </div>
     </section>
 
-    <section class="guide" id="without-the-app" aria-labelledby="api-heading">
+    <section class="guide" id="service" aria-labelledby="api-heading">
       <div class="wrap prose">
-        <h2 id="api-heading">Without the app</h2>
-        <p>You, or a script or agent on your machine, can send the same report straight to the report service. There is no account or key.</p>
+        <h2 id="api-heading">From a script or agent</h2>
+        <p>A script or agent on your machine can send the same report straight to the report service. There is no account or key.</p>
         <p>Send <code>POST https://bug-reports.kakudio.workers.dev/api/reports</code> with a JSON body of four fields:</p>
         <dl class="facts">
           <dt><code>mod_id</code></dt>
@@ -111,10 +102,54 @@
       </div>
     </section>
 
+    <section class="guide" id="agent" aria-labelledby="agent-heading">
+      <div class="wrap prose">
+        <h2 id="agent-heading">Instructions for an agent</h2>
+        <p>To have an agent on your machine send a report for you, give it these instructions exactly as shown, along with what went wrong.</p>
+        <pre id="agent-instructions">Send a bug report for a Kakudio mod on my behalf.
+
+1. Find the run logs. Each covered mod writes one plain-text run log per run
+   into its own folder in my Spelunky 2 game folder. On Steam that is usually
+   C:\Program Files (x86)\Steam\steamapps\common\Spelunky 2
+   If Spelunky 2 is in another Steam library, look there. If you can't find
+   the folder, ask me for its path.
+
+   Covered mods:
+
+   Shell Game
+     mod_id:      shell-game
+     folder:      Mods\Data\ShellGame\run_reports
+     file names:  *-ShellGame-randomizer-*-run-*-*.txt
+     first line:  Shell Game run report
+
+2. Pick the newest run log: the file in the mod's folder whose name matches
+   its file-name pattern (case doesn't matter) and that was modified last,
+   unless I name another run. Its first line must be exactly the mod's first
+   line. If it isn't, tell me and don't send it.
+
+3. Send it:
+   POST https://bug-reports.kakudio.workers.dev/api/reports
+   Content-Type: application/json
+   with a JSON body of four fields:
+     mod_id       the mod's id from the list above
+     description  what went wrong, in my words; ask me if I haven't said
+     log_name     the run log's file name, without its folder
+     log          the whole run log, as text, not just its start
+   Build the body with a JSON library so the log's line breaks, quotes and
+   backslashes are escaped.
+
+4. Tell me the answer:
+   201: the body is {"reference":"ABCD-1234"}. Tell me the report was sent
+     and give me the reference, and tell me to keep it.
+   Any other status: the body is {"error":"..."}. Show me the error message
+     exactly as it is, and don't send again unless I ask.</pre>
+      </div>
+    </section>
+
     <section class="guide" id="refused" aria-labelledby="refused-heading">
       <div class="wrap prose">
         <h2 id="refused-heading">When a report is refused</h2>
-        <p>The app and the service turn a report away when:</p>
+        <p>The service turns a report away when:</p>
         <ul class="refusals">
           <li>the run log's file name doesn't match its mod's run logs (case doesn't matter);</li>
           <li>the run log isn't UTF-8 plain text;</li>
@@ -132,7 +167,7 @@
     <section class="guide" id="reference" aria-labelledby="reference-heading">
       <div class="wrap prose">
         <h2 id="reference-heading">Keep your reference</h2>
-        <p>Every report that gets through has a reference, eight letters and digits such as <code>ABCD-1234</code>, shown by the app or returned by the service. Keep it: it is how your report is found again when you talk about the bug.</p>
+        <p>Every report that gets through has a reference, eight letters and digits such as <code>ABCD-1234</code>, shown when you send it or returned by the service. Keep it: it is how your report is found again when you talk about the bug.</p>
       </div>
     </section>
   </main>

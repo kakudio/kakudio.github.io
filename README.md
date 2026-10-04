@@ -20,7 +20,7 @@ The site ships no JavaScript. Every link and every piece of content is written i
 | --- | --- |
 | Homepage: brand copy, headings (including each game), Shell Game's name, Beta badge, descriptor, pitch and requirements line, beta-tester and About text, footer | `index.html` |
 | Homepage links (Download Beta, View on GitHub, Join Discord, Report bugs that you find, About's closing line, Kakudio on GitHub) | `href`s in `index.html` |
-| Bug-reporting page: the reporter download, the report service's URLs and rules, and the mods it covers | `bug-report/index.html`, served at `/bug-report/` |
+| Bug-reporting page: where run logs live, the report service's URLs and rules, the agent instructions, and the mods it covers | `bug-report/index.html`, served at `/bug-report/` |
 | 404 page copy and its link home | `404.html` |
 | Search, Open Graph and social-card metadata | `<head>` of each page |
 | Layout, spacing, focus rings, reduced motion, and the knobs a theme sets | `assets/css/base.css` |
@@ -45,7 +45,7 @@ The site ships no JavaScript. Every link and every piece of content is written i
 
 Leave the group out while there is nothing to show.
 
-**Bug reports.** `/bug-report/` is the public face of the Kakudio report service (`https://bug-reports.kakudio.workers.dev`) and its reporter app; its address is linked from the service and from Shell Game, so it doesn't move. Everything it says about the service restates kakudio/bug-reports `service/README.md` and `service/src/submit.ts`, and where they disagree the service wins. The page lists the covered mods by hand, copied from the service's `GET /api/mods`: when a mod is added to the service's list, add an `<article class="mod">` for it under *Mods it covers*, with its run-log folder, file names, first line and `mod_id`.
+**Bug reports.** `/bug-report/` is the public face of the Kakudio report service (`https://bug-reports.kakudio.workers.dev`); its address is linked from the service and from Shell Game, so it doesn't move. Everything it says about the service restates kakudio/bug-reports `service/README.md` and `service/src/submit.ts`, and where they disagree the service wins. The page lists the covered mods by hand, copied from the service's `GET /api/mods`: when a mod is added to the service's list, add an `<article class="mod">` for it under *Mods it covers*, with its run-log folder, file names, first line and `mod_id`, and add the same to the agent instructions block (`#agent-instructions`), which restates the service and the mod list as plain text and must agree with them.
 
 **Projects.** Projects are grouped by game: each game is a `<section class="game">` in `index.html` headed by the game's name, holding one `<article class="project-card">` per mod. Add a mod as another article inside its game; add a game as another section.
 

@@ -52,9 +52,9 @@
         <p>If Spelunky 2 is in another Steam library, find its folder from Steam: right-click <strong>Spelunky 2</strong>, choose <strong>Manage → Browse local files</strong>, then open <code>Mods\Data\ShellGame\run_reports</code>.</p>
         <p>When you pick the run log, you can paste the folder's path into the file picker's address bar to go straight there. The newest file is your most recent run.</p>
 
-        <p class="notice" id="form-needs-js">The report form needs JavaScript, which is off or blocked here. You can still send a report <a href="#service">from a script or agent</a>, or give an agent <a href="#agent">the instructions below</a>.</p>
+        <p class="notice" id="form-needs-js">The report form needs JavaScript, which is off or blocked here. You can still send a report <a href="#service">from a script or agent</a> with the instructions below.</p>
         <p class="notice" id="form-loading" role="status" hidden>Connecting to the report service…</p>
-        <p class="notice" id="form-unavailable" role="alert" hidden>The form can't reach the report service right now. Try again later, or send a report <a href="#service">from a script or agent</a> or with <a href="#agent">the instructions for an agent</a>.</p>
+        <p class="notice" id="form-unavailable" role="alert" hidden>The form can't reach the report service right now. Try again later, or send a report <a href="#service">from a script or agent</a>.</p>
 
         <form class="report-form" id="report-form" action="https://bug-reports.kakudio.workers.dev/api/reports" method="post" data-mods="https://bug-reports.kakudio.workers.dev/api/mods" hidden novalidate>
           <fieldset class="pick" id="pick">
@@ -110,44 +110,38 @@
       </div>
     </section>
 
-    <section class="guide" id="mods" aria-labelledby="mods-heading">
+    <section class="guide" id="service" aria-labelledby="service-heading">
       <div class="wrap prose">
-        <h2 id="mods-heading">Mods it covers</h2>
-        <p>Every run of a covered mod writes a run log, a plain text file, into the mod's own folder under <code>Mods/Data/</code> in your Spelunky 2 game folder. On Steam that is usually <code>C:\Program Files (x86)\Steam\steamapps\common\Spelunky 2</code>. The newest file is your most recent run.</p>
+        <div class="heading-row">
+          <h2 id="service-heading">From a script or agent</h2>
+          <div class="copy-row" hidden>
+            <button class="button" type="button" data-copy="service-instructions">Copy the instructions</button>
+            <p class="copy-status" role="status"><span data-copied hidden>Copied the instructions.</span><span data-copy-failed hidden>Couldn't copy. Select the instructions below and copy them yourself.</span></p>
+          </div>
+        </div>
+        <div id="service-instructions">
+          <p>A bug report for a Kakudio mod is the run log of the run that went wrong and a description of what happened, sent to the Kakudio report service in one request. A script or agent can send it without the form. There is no account or key.</p>
 
-        <article class="mod" aria-labelledby="shell-game-heading">
-          <h3 id="shell-game-heading">Shell Game <span class="mod-game">Spelunky 2</span></h3>
-          <dl class="facts">
-            <dt>Run logs</dt>
-            <dd>the <code>.txt</code> files in <code>Mods/Data/ShellGame/run_reports/</code></dd>
-            <dt>File names</dt>
-            <dd><code>*-ShellGame-randomizer-*-run-*-*.txt</code></dd>
-            <dt>First line</dt>
-            <dd><code>Shell Game run report</code></dd>
-            <dt><code>mod_id</code></dt>
-            <dd><code>shell-game</code></dd>
-          </dl>
-        </article>
-      </div>
-    </section>
+          <h3>1. Find the run logs</h3>
+          <p>Every run of a covered mod writes a run log, a plain text file, into the mod's own folder inside the Spelunky 2 game folder. On Steam the game folder is usually <code>C:\Program Files (x86)\Steam\steamapps\common\Spelunky 2</code>. If Spelunky 2 is in another Steam library, it is there instead: in Steam, right-click Spelunky 2 and choose Manage → Browse local files. If it can't be found, ask the player for its path.</p>
+          <p>Covered mods:</p>
+          <ul>
+            <li><strong>Shell Game</strong>: <code>mod_id</code> <code>shell-game</code>; folder <code>Mods\Data\ShellGame\run_reports</code>; file names <code>*-ShellGame-randomizer-*-run-*-*.txt</code>; first line <code>Shell Game run report</code></li>
+          </ul>
 
-    <section class="guide" id="service" aria-labelledby="api-heading">
-      <div class="wrap prose">
-        <h2 id="api-heading">From a script or agent</h2>
-        <p>A script or agent on your machine can send the same report straight to the report service. There is no account or key.</p>
-        <p>Send <code>POST https://bug-reports.kakudio.workers.dev/api/reports</code> with a JSON body of four fields:</p>
-        <dl class="facts">
-          <dt><code>mod_id</code></dt>
-          <dd>the mod's id from <a href="#mods">the list above</a></dd>
-          <dt><code>description</code></dt>
-          <dd>what went wrong, in your words</dd>
-          <dt><code>log_name</code></dt>
-          <dd>the run log's file name, without its folder</dd>
-          <dt><code>log</code></dt>
-          <dd>the whole run log, as text</dd>
-        </dl>
-        <p>For example, for a Shell Game run:</p>
-        <pre><code>curl https://bug-reports.kakudio.workers.dev/api/reports \
+          <h3>2. Pick the newest run log</h3>
+          <p>In the mod's folder, take the file whose name matches the mod's pattern (case doesn't matter) and that was modified last, unless the player names another run. Its first line must be exactly the mod's first line; if it isn't, the service won't take it, so tell the player and don't send it.</p>
+
+          <h3>3. Send it</h3>
+          <p>Send <code>POST https://bug-reports.kakudio.workers.dev/api/reports</code> with <code>Content-Type: application/json</code> and a JSON body of four fields:</p>
+          <ul>
+            <li><code>mod_id</code>: the mod's <code>mod_id</code> from step 1;</li>
+            <li><code>description</code>: what went wrong, in the player's words (ask them if they haven't said);</li>
+            <li><code>log_name</code>: the run log's file name, without its folder;</li>
+            <li><code>log</code>: the whole run log, as text, not just its start.</li>
+          </ul>
+          <p>The log goes in as a JSON string, so its line breaks, quotes and backslashes need escaping; build the body with a JSON library and it does that for you. For example, for a Shell Game run:</p>
+          <pre><code>curl https://bug-reports.kakudio.workers.dev/api/reports \
   -H 'Content-Type: application/json' \
   -d '{
     "mod_id": "shell-game",
@@ -155,59 +149,13 @@
     "log_name": "20261002-140316-ShellGame-randomizer-126973-run-8288215085007426999,338101898040651254-2.txt",
     "log": "Shell Game run report\nRandomizer seed: 126973\n…"
   }'</code></pre>
-        <p>Put the whole file in <code>log</code>, not just its start. It goes in as a JSON string, so its line breaks, quotes and backslashes need escaping; any JSON library does that for you.</p>
-        <p>A report that is taken gets <code>201</code> and its reference:</p>
-        <pre><code>{"reference":"ABCD-1234"}</code></pre>
-        <p>Anything else gets an error status and a message written for you, to show as it is:</p>
-        <pre><code>{"error":"This run log is too large to send (the limit is 1 MB)."}</code></pre>
-      </div>
-    </section>
 
-    <section class="guide" id="agent" aria-labelledby="agent-heading">
-      <div class="wrap prose">
-        <h2 id="agent-heading">Instructions for an agent</h2>
-        <p>To have an agent on your machine send a report for you, give it these instructions exactly as shown, along with what went wrong.</p>
-        <div class="copy-row" hidden>
-          <button class="button" type="button" data-copy="agent-instructions">Copy instructions for your agent</button>
-          <p class="copy-status" role="status"><span data-copied hidden>Copied the instructions.</span><span data-copy-failed hidden>Couldn't copy. Select the instructions and copy them yourself.</span></p>
+          <h3>4. Read the answer</h3>
+          <p>A report that is taken gets <code>201</code> and its reference. The report is sent; give the player the reference and tell them to keep it.</p>
+          <pre><code>{"reference":"ABCD-1234"}</code></pre>
+          <p>Any other status means the report wasn't sent, and comes with a message written for the player. Show it to them exactly as it is, and don't send again unless they ask.</p>
+          <pre><code>{"error":"This run log is too large to send (the limit is 1 MB)."}</code></pre>
         </div>
-        <pre id="agent-instructions">Send a bug report for a Kakudio mod on my behalf.
-
-1. Find the run logs. Each covered mod writes one plain-text run log per run
-   into its own folder in my Spelunky 2 game folder. On Steam that is usually
-   C:\Program Files (x86)\Steam\steamapps\common\Spelunky 2
-   If Spelunky 2 is in another Steam library, look there. If you can't find
-   the folder, ask me for its path.
-
-   Covered mods:
-
-   Shell Game
-     mod_id:      shell-game
-     folder:      Mods\Data\ShellGame\run_reports
-     file names:  *-ShellGame-randomizer-*-run-*-*.txt
-     first line:  Shell Game run report
-
-2. Pick the newest run log: the file in the mod's folder whose name matches
-   its file-name pattern (case doesn't matter) and that was modified last,
-   unless I name another run. Its first line must be exactly the mod's first
-   line. If it isn't, tell me and don't send it.
-
-3. Send it:
-   POST https://bug-reports.kakudio.workers.dev/api/reports
-   Content-Type: application/json
-   with a JSON body of four fields:
-     mod_id       the mod's id from the list above
-     description  what went wrong, in my words; ask me if I haven't said
-     log_name     the run log's file name, without its folder
-     log          the whole run log, as text, not just its start
-   Build the body with a JSON library so the log's line breaks, quotes and
-   backslashes are escaped.
-
-4. Tell me the answer:
-   201: the body is {"reference":"ABCD-1234"}. Tell me the report was sent
-     and give me the reference, and tell me to keep it.
-   Any other status: the body is {"error":"..."}. Show me the error message
-     exactly as it is, and don't send again unless I ask.</pre>
       </div>
     </section>
 
@@ -221,7 +169,7 @@
           <li>its first line isn't its mod's run-log header, for Shell Game <code>Shell Game run report</code>;</li>
           <li>the description is empty or over 20,000 characters;</li>
           <li>the run log is empty or over 1 MB;</li>
-          <li>the mod isn't on <a href="#mods">the list</a>;</li>
+          <li>the mod isn't one of <a href="#service">the covered mods</a>;</li>
           <li>one sender has tried more than 5 reports in a minute, sent or not;</li>
           <li>the service is full for the day, or full overall.</li>
         </ul>

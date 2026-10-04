@@ -202,11 +202,6 @@
   border-top-style: dashed;
 }
 
-.mod {
-  border-color: #0b0603;
-  box-shadow: inset 0 3px 0 rgb(255 230 180 / 0.08);
-}
-
 pre {
   box-shadow: inset 0 3px 0 rgb(0 0 0 / 0.35);
 }

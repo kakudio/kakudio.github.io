@@ -133,7 +133,7 @@
           </ul>
 
           <h3>2. Pick the run log for the run</h3>
-          <p>In the mod's folder, take the run log of the run where the bug happened: a file whose name matches the mod's pattern (case doesn't matter). Each name starts with the run's date and time.</p>
+          <p>In the mod's folder, take the run log of the run where the bug happened: a file whose name matches the mod's pattern (case doesn't matter). Each name starts with the run's date and time. If the player hasn't said which run it was, ask them.</p>
 
           <h3>3. Send it</h3>
           <p>Send <code>POST https://bug-reports.kakudio.workers.dev/api/reports</code> with <code>Content-Type: application/json</code> and a JSON body of four fields:</p>

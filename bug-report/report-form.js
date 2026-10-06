@@ -27,7 +27,7 @@ function setUpCopyButtons() {
       copied.hidden = failed.hidden = true;
       let ok = false;
       try {
-        await navigator.clipboard.writeText(document.getElementById(button.dataset.copy).textContent);
+        await navigator.clipboard.writeText(document.getElementById(button.dataset.copy).innerText);
         ok = true;
       } catch {}
       setTimeout(() => {

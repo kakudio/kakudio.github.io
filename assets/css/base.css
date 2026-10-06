@@ -520,6 +520,7 @@ button.button {
 }
 
 .prose > p,
+.prose > .instructions > p,
 .prose li,
 .prose dd {
   color: var(--muted);
@@ -546,52 +547,6 @@ button.button {
 .prose li::marker {
   color: var(--accent);
   font-family: var(--font-label);
-}
-
-.mod {
-  margin-top: 2rem;
-  padding: 1.25rem clamp(1rem, 4vw, 1.75rem);
-  border: 2px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface-image), var(--surface);
-}
-
-.mod-game {
-  font-family: var(--font-label);
-  font-size: 0.8rem;
-  font-weight: 400;
-  text-transform: var(--label-case);
-  letter-spacing: var(--label-tracking);
-  color: var(--muted);
-}
-
-.facts {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.25rem 1.5rem;
-  margin: 0 0 1.25rem;
-}
-
-.mod .facts {
-  margin-bottom: 0;
-}
-
-.facts dt {
-  font-weight: 700;
-}
-
-.facts dd {
-  margin: 0 0 0.75rem;
-}
-
-@media (min-width: 40rem) {
-  .facts {
-    grid-template-columns: max-content minmax(0, 1fr);
-  }
-
-  .facts dd {
-    margin-bottom: 0.25rem;
-  }
 }
 
 code,
@@ -622,6 +577,43 @@ pre code {
   align-items: center;
   gap: 0.5rem 1rem;
   margin-bottom: 1.5rem;
+}
+
+.heading-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.prose > .heading-row {
+  max-width: none;
+}
+
+.heading-row h2,
+.heading-row .copy-row {
+  margin-bottom: 0;
+}
+
+.heading-row .copy-row {
+  flex: 1 1 16rem;
+}
+
+.prose .mod-list {
+  padding: 0;
+  list-style: none;
+}
+
+.mod-list li {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-image), var(--surface);
+}
+
+.mod-list li + li {
+  margin-top: 0.75rem;
 }
 
 .prose .copy-status {

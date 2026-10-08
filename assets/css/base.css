@@ -777,6 +777,51 @@ pre code {
   white-space: nowrap;
 }
 
+/* Project page */
+
+.page-title:has(> .status-badge) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
+}
+
+.page-title:has(+ .page-descriptor) {
+  margin-bottom: 0.75rem;
+}
+
+.page-descriptor {
+  color: var(--muted);
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  margin-bottom: 2rem;
+}
+
+.release {
+  max-width: 46rem;
+  margin: 1.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.prose .options {
+  margin: 0 0 1.25rem;
+}
+
+.options dt {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.options dd {
+  margin: 0.25rem 0 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--line);
+}
+
+.options dd + dt {
+  margin-top: 1.25rem;
+}
+
 /* 404 */
 
 .lost {

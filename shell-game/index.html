@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shell Game · Kakudio</title>
+  <meta name="description" content="Shell Game is my key item randomizer for Spelunky 2. Here's what it shuffles, the 40 places things can turn up, how every seed stays winnable, its options, how to install the beta and how to report a bug.">
+  <link rel="canonical" href="https://kakudio.dev/shell-game/">
+  <meta name="theme-color" content="#150d07">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kakudio">
+  <meta property="og:title" content="Shell Game · Kakudio">
+  <meta property="og:description" content="A key item randomizer for Spelunky 2. See what it shuffles, where things can turn up, how every seed reaches the Cosmic Ocean, and how to install the beta.">
+  <meta property="og:url" content="https://kakudio.dev/shell-game/">
+  <meta property="og:image" content="https://kakudio.dev/assets/img/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Kakudio wordmark in gold pixel lettering in a torch-lit cave, with the line: Go deeper into the games you love.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shell Game · Kakudio">
+  <meta name="twitter:description" content="A key item randomizer for Spelunky 2. See what it shuffles, where things can turn up, how every seed reaches the Cosmic Ocean, and how to install the beta.">
+  <meta name="twitter:image" content="https://kakudio.dev/assets/img/social-preview.png">
+  <meta name="twitter:image:alt" content="The Kakudio wordmark in gold pixel lettering in a torch-lit cave, with the line: Go deeper into the games you love.">
+
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/themes/spelunky/theme.css">
+</head>
+<body>
+  <a class="skip-link" href="#how-it-works">Skip to how a run works</a>
+
+  <header class="hero hero--page">
+    <div class="wrap">
+      <p class="eyebrow"><a href="/">Kakudio</a></p>
+      <h1 class="page-title">Shell Game <span class="status-badge">Beta</span></h1>
+      <p class="page-descriptor">Shell Game — a key item randomizer for Spelunky 2</p>
+      <div class="actions">
+        <a class="button button--primary" href="https://github.com/kakudio/spelunky2-shell-game/releases/latest">Download Beta</a>
+        <a class="button" href="https://github.com/kakudio/spelunky2-shell-game">View on GitHub</a>
+        <a class="button" href="https://discord.gg/9tXdYSC55W">Join Discord</a>
+      </div>
+      <p class="release">The latest release is <a href="https://github.com/kakudio/spelunky2-shell-game/releases/tag/v0.1.0">v0.1.0</a>, released <time datetime="2026-08-01">1 August 2026</time>. Release notes for every version are on <a href="https://github.com/kakudio/spelunky2-shell-game/releases">Shell Game's releases page</a>.</p>
+    </div>
+    <div class="ground" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section class="guide" id="how-it-works" aria-labelledby="how-it-works-heading">
+      <div class="wrap prose">
+        <h2 id="how-it-works-heading">How a run works</h2>
+        <p>Spelunky 2 has places that always hand you the same thing: Olmec's Ankh, Vlad's Crown, Excalibur in its stone, the Tablet of Destiny from Kingu or Osiris, the Bow and the Arrow of Light from the Moon and Sun Challenges. Shell Game takes 40 of those places, which I call checks, and shuffles what they give you. Each seed puts 40 items in those 40 checks, one item per check, so every item below is somewhere in every seed.</p>
+        <p>The items the game's progression depends on are shuffled with the rest:</p>
+        <ul>
+          <li>the <strong>Ankh</strong>, the <strong>Crown</strong>, the <strong>Hedjet</strong>, the <strong>Udjat Eye</strong> and the <strong>Skeleton Key</strong>;</li>
+          <li><strong>Excalibur</strong>, the <strong>Scepter</strong>, the <strong>Alien Compass</strong> and the <strong>Eggplant</strong>;</li>
+          <li><strong>Tusk's Idol</strong>;</li>
+          <li>the <strong>Tablet of Destiny</strong>, <strong>Hou Yi's Bow</strong> and the <strong>Arrow of Light</strong>.</li>
+        </ul>
+        <p>So is a lot of gear you can win without: the Cape, Vlad's Cape, the Jetpack, the Telepack, the Powerpack, the Hoverpack, the Kapala, the Elixir, the Eggplant Crown, the True Crown, Royal Jelly, Spike Shoes, Spring Shoes, Climbing Gloves, the Pitcher's Mitt, Paste, the Spectacles, the Compass, the Mattock, the Teleporter, the Clone Gun, the Freeze Ray, the Shotgun, the Plasma Cannon, a Bomb Box, and two Player Bags, one of ropes and one of ropes and bombs.</p>
+        <p>Every seed has a way to the Cosmic Ocean. Bring the Tablet of Destiny, Hou Yi's Bow and the Arrow of Light to Hundun and it opens. Before your run starts, the mod builds the whole layout from the seed and checks it: at least one way through the game has to collect all three and reach Hundun, and every check has to be reachable on some way through. A layout that fails is never handed to you.</p>
+        <p>That promise is about the seed, not every choice you make in it. The way through might run down the Volcana side and not the Jungle side, so the fork you take matters.</p>
+        <p>The same seed always gives the same layout, whatever levels the game generates around it, so you can replay a seed or race a friend on it.</p>
+      </div>
+    </section>
+
+    <section class="guide" id="where-things-turn-up" aria-labelledby="where-heading">
+      <div class="wrap prose">
+        <h2 id="where-heading">Where things turn up</h2>
+        <p>These are all 40 checks, by area, with what each one needs. Any of them can hold any item unless a rule here says otherwise.</p>
+
+        <h3>The rules that shape a run</h3>
+        <ul>
+          <li><strong>Two forks.</strong> After the Dwelling you go to the Jungle or to Volcana, and after Olmec to the Tide Pool or to the Temple. You only play one side of each fork, so the checks on the other side are out of reach for that run.</li>
+          <li><strong>Branch keys stay on their branch.</strong> Excalibur opens Kingu's lair on the Tide Pool side, so it is never at a Temple check. The Scepter opens the City of Gold on the Temple side, so it is never at a Tide Pool check.</li>
+          <li><strong>The Ankh gets used up.</strong> Going into Abzu or the Duat takes your Ankh.</li>
+          <li><strong>What a place needs comes before it.</strong> An item that an area or a check needs is placed earlier in the run than the place that needs it, never behind it, though not always on the side of a fork you take.</li>
+          <li><strong>Something to glide or fly with, early.</strong> Both Stars Challenges need the Cape, Vlad's Cape or the Jetpack, so one of the three is always placed before you reach the Tide Pool or the Temple.</li>
+          <li><strong>Tusk's Idol moves Sparrow's quest along.</strong> Carrying it out through an exit advances her quest, so it turns up no earlier than the Tide Pool or the Temple and no later than Neo Babylon, and never at one of Kali's checks.</li>
+          <li><strong>Queen Bee never has a key item.</strong> You can skip her, so she only ever gives you gear.</li>
+        </ul>
+
+        <h3>Dwelling</h3>
+        <ul>
+          <li>The chest where the Udjat Eye usually is.</li>
+          <li>Yang's treasure room, once you've finished his turkey quest. The item is always there.</li>
+          <li>Beating Quillback.</li>
+        </ul>
+
+        <h3>Jungle</h3>
+        <p>The Jungle side of the first fork.</p>
+        <ul>
+          <li>The Black Market, where the Hedjet is usually for sale. You need the Udjat Eye to get in.</li>
+          <li>Beating Queen Bee. Never a key item.</li>
+          <li>The Moon Challenge.</li>
+          <li>The sisters. Rescue them in the Jungle and they reward you at Olmec.</li>
+        </ul>
+
+        <h3>Volcana</h3>
+        <p>The Volcana side of the first fork.</p>
+        <ul>
+          <li>Vlad's Castle, where the Crown usually is. You need the Udjat Eye.</li>
+          <li>Beating Vlad. You need the Udjat Eye.</li>
+          <li>Rescuing Van Horsing.</li>
+          <li>The Moon Challenge.</li>
+        </ul>
+
+        <h3>Olmec</h3>
+        <ul>
+          <li>Olmec's reward, where the Ankh usually is.</li>
+          <li>The sisters' reward, if you rescued them in the Jungle.</li>
+        </ul>
+
+        <h3>Tide Pool</h3>
+        <p>The Tide Pool side of the second fork. Never the Scepter.</p>
+        <ul>
+          <li>The stone where Excalibur usually is. You need the Hedjet or the Crown.</li>
+          <li>Tusk's Dice House: the fifth and last prize. Her VIP invitation still comes as normal.</li>
+          <li>The room where Tusk's Idol usually is. You need the Skeleton Key.</li>
+          <li>The Idol in Great Humphead's cave.</li>
+          <li>The present you get for beating Humphead.</li>
+          <li>The Stars Challenge. You need the Cape, Vlad's Cape or the Jetpack.</li>
+        </ul>
+
+        <h3>Abzu</h3>
+        <p>Reached from the Tide Pool. You need the Ankh to go in, and it uses the Ankh up.</p>
+        <ul>
+          <li>Beating Kingu. You need Excalibur.</li>
+        </ul>
+
+        <h3>Temple</h3>
+        <p>The Temple side of the second fork. Never Excalibur.</p>
+        <ul>
+          <li>Beating Anubis.</li>
+          <li>Van Horsing's reward, where the Alien Compass usually is. You need to have rescued Van Horsing and beaten Vlad in Volcana.</li>
+          <li>The Stars Challenge. You need the Cape, Vlad's Cape or the Jetpack.</li>
+        </ul>
+
+        <h3>City of Gold</h3>
+        <p>Reached from the Temple. You need the Scepter, and the Hedjet or the Crown. It holds no check of its own; it is the way to the Duat.</p>
+
+        <h3>Duat</h3>
+        <p>Reached from the City of Gold. You need the Ankh to go in, and it uses the Ankh up.</p>
+        <ul>
+          <li>Beating Osiris.</li>
+          <li>Beating Anubis II.</li>
+        </ul>
+
+        <h3>Ice Caves</h3>
+        <ul>
+          <li>The Yeti Queen.</li>
+          <li>The Yeti King.</li>
+          <li>The Mothership, where the Plasma Cannon usually is. You need the Alien Compass.</li>
+          <li>Beating Lahamu. You need the Alien Compass.</li>
+        </ul>
+
+        <h3>Neo Babylon</h3>
+        <ul>
+          <li>Tusk's Palace. You need to have finished the Dice House.</li>
+          <li>Finishing Sparrow's vault.</li>
+        </ul>
+
+        <h3>Tiamat</h3>
+        <ul>
+          <li>Beating Tiamat.</li>
+        </ul>
+
+        <h3>Sunken City</h3>
+        <ul>
+          <li>The Sun Challenge, where the Arrow of Light usually is.</li>
+          <li>The Sun Challenge's supplies, the bag of ropes and bombs it also gives you.</li>
+        </ul>
+
+        <h3>Eggplant World</h3>
+        <p>Reached through the Moai, which works as normal. You need the Eggplant.</p>
+        <ul>
+          <li>The spot where the Eggplant Crown usually is.</li>
+        </ul>
+
+        <h3>Hundun</h3>
+        <p>No check here. Bring the Tablet of Destiny, Hou Yi's Bow and the Arrow of Light and the Cosmic Ocean opens.</p>
+
+        <h3>Anywhere in the run</h3>
+        <p>These follow the characters and altars wherever the game puts them.</p>
+        <ul>
+          <li>Sparrow's first gift.</li>
+          <li>Beg, the first time you meet him.</li>
+          <li>Beg's True Crown, at the end of his quest.</li>
+          <li>Kali's first gift.</li>
+          <li>Kali's second gift, after the first.</li>
+          <li>Kali's Present. On a level with a Kali altar, a pet turns into a Present until you've collected this check. Sacrifice the Present at the altar.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="guide" id="options" aria-labelledby="options-heading">
+      <div class="wrap prose">
+        <h2 id="options-heading">Options</h2>
+        <p>You'll find them in Modlunky 2's options menu, or in Overlunky under <strong>F8 → Options</strong>.</p>
+        <dl class="options">
+          <dt>Enable Shell Game</dt>
+          <dd>Turns the whole mod on or off.</dd>
+          <dt>Randomizer Seed</dt>
+          <dd>The seed that fixes your layout. Set a number to play that layout every time, or leave it at <code>0</code> and your next run picks a new seed, which stays set for the runs after it.</dd>
+          <dt>New Seed</dt>
+          <dd>Sets the seed back to <code>0</code>, so your next run gets a new layout.</dd>
+          <dt>Kali Item Recovery</dt>
+          <dd>Brings the items you were holding and wearing in the City of Gold, and the altar drops it allows, through to the Duat.</dd>
+          <dt>Balanced Duat Kali Rewards</dt>
+          <dd>Swaps the favor rewards on the Duat's altar for Player Bags and Royal Jelly that build up as you go.</dd>
+          <dt>True Crown Restoration</dt>
+          <dd>After the True Crown encounter, lifts Kali's curse and brings you back up to at least 4 health.</dd>
+        </dl>
+        <p>Kali Item Recovery, Balanced Duat Kali Rewards and True Crown Restoration start on.</p>
+        <p>If you see <strong>Test Resources</strong> in the options, which some builds show, turn it off. It starts on, and it hands you a loadout of resources and progression items that I use to test checks, which gives the run away.</p>
+      </div>
+    </section>
+
+    <section class="guide" id="install" aria-labelledby="install-heading">
+      <div class="wrap prose">
+        <h2 id="install-heading">Install</h2>
+        <p>You need:</p>
+        <ul>
+          <li><strong>Spelunky 2</strong> on Steam;</li>
+          <li><strong>Modlunky 2</strong>, from <a href="https://github.com/spelunky-fyi/modlunky2/releases">its releases on GitHub</a>;</li>
+          <li><strong>Playlunky</strong>, which you install from the Playlunky tab in Modlunky 2.</li>
+        </ul>
+        <p>Then:</p>
+        <ol>
+          <li>Download Shell Game's zip file from <a href="https://github.com/kakudio/spelunky2-shell-game/releases/latest">the latest release</a>.</li>
+          <li>Open Modlunky 2.</li>
+          <li>In the <strong>Mods</strong> tab, choose <strong>Open Mods Folder</strong>.</li>
+          <li>Extract the zip into that folder.</li>
+          <li>In Modlunky 2's <strong>Playlunky</strong> tab, find <strong>Shell Game</strong> in the list of mods and turn it on.</li>
+          <li>Press <strong>Play!</strong> to start Spelunky 2 with Shell Game.</li>
+        </ol>
+        <p>These steps follow <a href="https://github.com/kakudio/spelunky2-shell-game#installation">the Installation section of Shell Game's README</a>. If the two ever disagree, go with the README.</p>
+      </div>
+    </section>
+
+    <section class="guide" id="rough-edges" aria-labelledby="rough-edges-heading">
+      <div class="wrap prose">
+        <h2 id="rough-edges-heading">What's still rough in the beta</h2>
+        <p>I've seen every one of the 40 checks give up its item in-game. These are the parts I haven't confirmed yet:</p>
+        <ul>
+          <li><strong>Multiplayer.</strong> I haven't checked which player gets credit when something happens in a co-op run. For now, Kali's first gift goes to the first player in the game, whoever made the offering.</li>
+          <li><strong>True Crown Restoration.</strong> I haven't yet seen it lift the curse and restore your health in a real run, or confirmed it leaves your health alone when you aren't cursed.</li>
+        </ul>
+        <p>If you run into either, or anything else, I want to hear about it.</p>
+      </div>
+    </section>
+
+    <section class="guide" id="found-a-bug" aria-labelledby="found-a-bug-heading">
+      <div class="wrap prose">
+        <h2 id="found-a-bug-heading">Found a bug?</h2>
+        <p>At the start of every run, Shell Game writes a run log to <code>Mods\<wbr>Data\<wbr>ShellGame\<wbr>run_reports</code> in your Spelunky 2 folder. It holds your seeds, the full layout for the run and the mod's logs, which is what I need to see what went wrong. It keeps your newest 30 runs.</p>
+        <p>Keep <strong>Generate Spoiler</strong> and <strong>Generate Logs</strong> on if your build shows them in the options, so the run log has both. Builds that don't show them always write both.</p>
+        <p>The run log gives away the whole layout, so don't open it while you're still playing that seed.</p>
+        <div class="actions">
+          <a class="button button--primary" href="/bug-report/">Report a bug</a>
+        </div>
+        <p>On the <a href="/bug-report/">bug-report page</a> you pick the run log for the run that went wrong, tell me what happened, and send it. No account needed.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <p class="footer-mark">Kakudio</p>
+      <p><a class="text-link" href="/">Back to kakudio.dev</a></p>
+      <p class="legal">© 2026 Kakudio. Spelunky and related properties belong to their respective owners. Shell Game is an unofficial mod; Kakudio is not affiliated with or endorsed by Mossmouth.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # kakudio.github.io
 
-Source for [kakudio.dev](https://kakudio.dev), the Kakudio website: a static homepage that introduces Kakudio and sends people to the beta of Shell Game, a key item randomizer for Spelunky 2, and a page that tells players how to report bugs in Kakudio's mods. Plain HTML and CSS, plus one small script for the bug-report form — no framework, no build step.
+Source for [kakudio.dev](https://kakudio.dev), the Kakudio website: a static homepage that introduces Kakudio and sends people to the beta of Shell Game, a key item randomizer for Spelunky 2, a page that explains how Shell Game works, and a page that tells players how to report bugs in Kakudio's mods. Plain HTML and CSS, plus one small script for the bug-report form — no framework, no build step.
 
 ## Run it locally
 
@@ -10,7 +10,7 @@ From the repository root, start any static file server:
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000/>. The bug-reporting page is at <http://localhost:8000/bug-report/> and the 404 page at <http://localhost:8000/404.html>. Asset paths are root-relative (`/assets/...`), so serve from the repository root rather than opening the files directly.
+Then open <http://localhost:8000/>. The Shell Game page is at <http://localhost:8000/shell-game/>, the bug-reporting page at <http://localhost:8000/bug-report/> and the 404 page at <http://localhost:8000/404.html>. Asset paths are root-relative (`/assets/...`), so serve from the repository root rather than opening the files directly.
 
 ## Where things live
 
@@ -19,14 +19,15 @@ The report form on `/bug-report/` is the one piece of JavaScript on the site; ev
 | What | Where |
 | --- | --- |
 | Homepage: brand copy, headings (including each game), Shell Game's name, Beta badge, descriptor, pitch and requirements line, beta-tester and About text, footer | `index.html` |
-| Homepage links (Download Beta, View on GitHub, Join Discord, Report bugs that you find, About's closing line, Kakudio on GitHub) | `href`s in `index.html` |
+| Homepage links (Download Beta, How it works, View on GitHub, Join Discord, Report bugs that you find, About's closing line, Kakudio on GitHub) | `href`s in `index.html` |
+| Shell Game page: its name, descriptor and Beta badge, its buttons, the latest release, and how a run works, where things turn up, the options, install steps, what's still rough in the beta and how to report a bug | `shell-game/index.html`, served at `/shell-game/` |
 | Bug-reporting page: where run logs live, the report form and all its copy, the report service's URLs and rules, and the instructions for sending a report from a script or agent, with the mods it covers | `bug-report/index.html`, served at `/bug-report/` |
 | The report form's behaviour: choosing a run, checking it, sending it, and the copy buttons | `bug-report/report-form.js`, loaded only by `bug-report/index.html` |
 | 404 page copy and its link home | `404.html` |
 | Search, Open Graph and social-card metadata | `<head>` of each page |
 | Layout, spacing, focus rings, reduced motion, and the knobs a theme sets | `assets/css/base.css` |
 | Colours, type, textures, decoration and the wordmark lettering | the active theme, `assets/themes/<game>/` (today `spelunky`) |
-| Which theme a page wears | the theme `<link>` in the `<head>` of `index.html`, `bug-report/index.html`, `404.html` and `tools/social-preview.html` |
+| Which theme a page wears | the theme `<link>` in the `<head>` of `index.html`, `shell-game/index.html`, `bug-report/index.html`, `404.html` and `tools/social-preview.html` |
 
 **Links not yet known.** A link with no real URL yet is left out of the HTML entirely — never added with a made-up or placeholder URL. Today that is the spelunky.fyi listing. When it exists, add it to `index.html` below Shell Game's buttons:
 
@@ -34,7 +35,7 @@ The report form on `/bug-report/` is the one piece of JavaScript on the site; ev
 <p class="also-on"><a class="text-link" href="https://spelunky.fyi/...">Listing on spelunky.fyi</a></p>
 ```
 
-**Links that repeat.** The Discord invite appears three times in `index.html` (Shell Game's buttons, *Come play with us* and About's closing line). Change all of them together.
+**Links that repeat.** The Discord invite appears three times in `index.html` (Shell Game's buttons, *Come play with us* and About's closing line) and once in `shell-game/index.html` (its buttons). Change all of them together.
 
 **Media.** To show screenshots or gameplay GIFs beside Shell Game, put the files in `assets/media/` and add a media group as the last child of its `<article class="project-card">`, one `<figure class="slot">` per item; the first is shown wide, and the card switches to two columns on wide screens:
 
@@ -50,9 +51,11 @@ Leave the group out while there is nothing to show.
 
 **The report form.** `bug-report/report-form.js` is a hand-written script with no dependencies. It enhances the form already in `bug-report/index.html`: it reads the covered mods from the service's `GET /api/mods` (the URL in the form's `data-mods`) each time the page loads, so a new mod's run logs are recognised without changing the script, and posts to the form's `action`. It shows and hides the messages written in the HTML rather than writing its own. Its checks on a run log's name, first line, encoding and size mirror kakudio/bug-reports `service/src/mods.ts` and `service/src/submit.ts`, and only spare the player a pointless upload; the service decides. The service answers cross-origin requests only from the origins it lists in kakudio/bug-reports `service/src/cors.ts`, so the form can't send from `python3 -m http.server` unless the service is also run locally (`wrangler dev` in kakudio/bug-reports).
 
+**The Shell Game page.** `/shell-game/` restates the mod in player terms: what it shuffles, the checks by area and the rules that shape a run, the options, and the requirements and install steps. Everything it says comes from kakudio/spelunky2-shell-game: the items, checks, areas and rules from `logic.lua`, the options and install steps from its `README.md`, and what's still rough from the README's known issues and `docs/verified-checks.md`. Where the README and `logic.lua` disagree, `logic.lua` wins; where the page and the mod disagree, the mod wins. Update the page when the mod changes what it shuffles, where things can turn up or what its options do, and when a new release is published: the latest version, its date and its link are written into the page's HTML, since no script asks GitHub for them. Release notes stay on GitHub; the page links to the releases index rather than copying them.
+
 **Projects.** Projects are grouped by game: each game is a `<section class="game">` in `index.html` headed by the game's name, holding one `<article class="project-card">` per mod. Add a mod as another article inside its game; add a game as another section.
 
-**The randomizer repository must be public.** View on GitHub and Download Beta point at [kakudio/spelunky2-key-item-randomizer](https://github.com/kakudio/spelunky2-key-item-randomizer) and its `/releases/latest`. Both 404 for visitors while that repository is private. `/releases/latest` always resolves to the newest release, so new betas need no link change.
+**The randomizer repository must be public.** View on GitHub and Download Beta, on the homepage and on `/shell-game/`, point at [kakudio/spelunky2-shell-game](https://github.com/kakudio/spelunky2-shell-game) and its `/releases/latest`. Both 404 for visitors while that repository is private. `/releases/latest` always resolves to the newest release, so new betas need no change to Download Beta. Link the repository by that name, not by an older one GitHub redirects from.
 
 ## Themes
 
@@ -78,7 +81,7 @@ assets/themes/spelunky/
 <link rel="stylesheet" href="/assets/themes/spelunky/theme.css">
 ```
 
-Point that link at the new theme in `index.html`, `bug-report/index.html`, `404.html` and `tools/social-preview.html`. It is plain CSS loaded in the `<head>`, so it applies without JavaScript and without a flash of another look. Also set `<meta name="theme-color">` in the three pages to the theme's `--bg`: it is page metadata that follows the active theme, not a second selector. Then re-take the favicon and social preview (below) so they match.
+Point that link at the new theme in `index.html`, `shell-game/index.html`, `bug-report/index.html`, `404.html` and `tools/social-preview.html`. It is plain CSS loaded in the `<head>`, so it applies without JavaScript and without a flash of another look. Also set `<meta name="theme-color">` in the four pages to the theme's `--bg`: it is page metadata that follows the active theme, not a second selector. Then re-take the favicon and social preview (below) so they match.
 
 ## Deployment
 

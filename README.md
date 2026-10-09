@@ -20,7 +20,7 @@ The report form on `/bug-report/` is the one piece of JavaScript on the site; ev
 | --- | --- |
 | Homepage: brand copy, headings (including each game), Shell Game's name, Beta badge, descriptor, pitch and requirements line, beta-tester and About text, footer | `index.html` |
 | Homepage links (Download Beta, How it works, View on GitHub, Join Discord, Report bugs that you find, About's closing line, Kakudio on GitHub) | `href`s in `index.html` |
-| Shell Game page: its name, descriptor and Beta badge, its buttons, the latest release, and how a run works, where things turn up, the options, install steps, what's still rough in the beta and how to report a bug | `shell-game/index.html`, served at `/shell-game/` |
+| Shell Game page: its name, descriptor and Beta badge, its buttons, the latest release, and how Shell Game works, where things turn up, the options, install steps, what's still rough in the beta and how to report a bug | `shell-game/index.html`, served at `/shell-game/` |
 | Bug-reporting page: where run logs live, the report form and all its copy, the report service's URLs and rules, and the instructions for sending a report from a script or agent, with the mods it covers | `bug-report/index.html`, served at `/bug-report/` |
 | The report form's behaviour: choosing a run, checking it, sending it, and the copy buttons | `bug-report/report-form.js`, loaded only by `bug-report/index.html` |
 | 404 page copy and its link home | `404.html` |

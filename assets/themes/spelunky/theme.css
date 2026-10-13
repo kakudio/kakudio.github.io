@@ -244,3 +244,126 @@ pre {
 .map-room[data-zone] li::marker {
   color: var(--zone);
 }
+
+/* Zones with their own art: a fringe along the top, ground along the
+   bottom and a scene in the corner, behind a shade that keeps the checks
+   readable. */
+.map-room[data-zone="jungle"]    { --zone-art: jungle; }
+.map-room[data-zone="volcana"]   { --zone-art: volcana; }
+.map-room[data-zone="ice-caves"] { --zone-art: ice-caves; }
+
+.map-room[data-zone="jungle"],
+.map-room[data-zone="volcana"],
+.map-room[data-zone="ice-caves"] {
+  --map-room-art-top: 0.5rem;
+  --map-room-art-bottom: 1rem;
+  --shade: rgb(20 12 6 / 0.82);
+}
+
+.map-room[data-zone="jungle"] {
+  --shade: rgb(10 18 8 / 0.8);
+  background:
+    url("/assets/themes/spelunky/img/zones/jungle-top.svg") 0 0 / 96px 15px repeat-x,
+    url("/assets/themes/spelunky/img/zones/jungle-bottom.svg") 0 100% / 128px 20px repeat-x,
+    linear-gradient(90deg, var(--shade) 0 45%, rgb(10 18 8 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/jungle-corner.svg") 100% 100% / 96px 96px no-repeat,
+    linear-gradient(#142010, #0d150a);
+}
+
+.map-room[data-zone="volcana"] {
+  --shade: rgb(24 8 4 / 0.8);
+  background:
+    url("/assets/themes/spelunky/img/zones/volcana-top.svg") 0 0 / 96px 12px repeat-x,
+    url("/assets/themes/spelunky/img/zones/volcana-bottom.svg") 0 100% / 128px 24px repeat-x,
+    linear-gradient(90deg, var(--shade) 0 45%, rgb(24 8 4 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/volcana-corner.svg") 100% calc(100% - 14px) / 96px 96px no-repeat,
+    linear-gradient(#2a0f07, #170704);
+}
+
+.map-room[data-zone="ice-caves"] {
+  --shade: rgb(8 16 26 / 0.8);
+  background:
+    url("/assets/themes/spelunky/img/zones/ice-caves-top.svg") 0 0 / 96px 15px repeat-x,
+    url("/assets/themes/spelunky/img/zones/ice-caves-bottom.svg") 0 100% / 128px 20px repeat-x,
+    linear-gradient(90deg, var(--shade) 0 45%, rgb(8 16 26 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/ice-caves-corner.svg") 100% calc(100% - 10px) / 96px 96px no-repeat,
+    linear-gradient(#10202e, #0a141d);
+}
+
+@media (max-width: 30rem) {
+  .map-room[data-zone="jungle"],
+  .map-room[data-zone="volcana"],
+  .map-room[data-zone="ice-caves"] {
+    background-size: 96px 15px, 128px 20px, auto, 64px 64px, auto;
+  }
+}
+
+/* The gear list is a wooden chest: planks, iron bands, gold trim, and a lid
+   with a lock plate. */
+.prose .treasure-chest {
+  --chest-lid-height: 2.25rem;
+  border: 3px solid #0b0603;
+  border-radius: 22px 22px 4px 4px;
+  background:
+    linear-gradient(#f2c14e, #f2c14e) 0 var(--chest-lid-height) / 100% 3px no-repeat,
+    linear-gradient(#0b0603, #0b0603) 0 calc(var(--chest-lid-height) + 3px) / 100% 2px no-repeat,
+    linear-gradient(90deg, #3a2414 0 14px, transparent 14px calc(100% - 14px), #3a2414 calc(100% - 14px)),
+    repeating-linear-gradient(#5a3519 0 22px, #4a2b14 22px 24px, #0b0603 24px 26px),
+    #4a2b14;
+  box-shadow:
+    0 6px 0 #0b0603,
+    inset 0 0 0 2px #7a4a22,
+    inset 3px 0 0 5px #b8801f,
+    inset -3px 0 0 5px #b8801f;
+}
+
+.prose .treasure-chest::before,
+.prose .treasure-chest::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+/* The lid: darker planks with a gold rim. */
+.prose .treasure-chest::before {
+  inset: 0 0 auto;
+  height: var(--chest-lid-height);
+  border-radius: 19px 19px 0 0;
+  background:
+    linear-gradient(90deg, transparent 0 calc(50% - 1.2rem), #b8801f calc(50% - 1.2rem) calc(50% + 1.2rem), transparent calc(50% + 1.2rem)) 0 100% / 100% 4px no-repeat,
+    repeating-linear-gradient(90deg, #3d2412 0 46px, #0b0603 46px 48px),
+    #3d2412;
+  box-shadow: inset 0 3px 0 #6b4424;
+}
+
+/* The lock plate, sitting on the seam between lid and body. */
+.prose .treasure-chest::after {
+  top: calc(var(--chest-lid-height) - 0.7rem);
+  left: 50%;
+  width: 1.6rem;
+  height: 1.9rem;
+  transform: translateX(-50%);
+  border: 2px solid #0b0603;
+  border-radius: 3px 3px 6px 6px;
+  background:
+    radial-gradient(circle at 50% 42%, #0b0603 0 3px, transparent 3.5px),
+    linear-gradient(#0b0603, #0b0603) 50% 68% / 2px 6px no-repeat,
+    linear-gradient(#ffe68a, #f2c14e 45%, #b8801f);
+  box-shadow: 0 2px 0 #0b0603;
+}
+
+.prose .loot li {
+  border-color: #0b0603;
+  background: rgb(20 11 5 / 0.88);
+  box-shadow: inset 0 1px 0 rgb(242 193 78 / 0.18);
+}
+
+.prose .loot li::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 8px;
+  margin-right: 0.45em;
+  vertical-align: 0.05em;
+  background: url("/assets/themes/spelunky/img/gold.svg") 0 0 / 100% 100%;
+}

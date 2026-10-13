@@ -396,7 +396,7 @@ pre {
 
 @media (max-width: 30rem) {
   .map-room[data-zone] {
-    background-size: 96px auto, 128px auto, auto, auto min(64px, 100%), auto;
+    background-size: 96px auto, 128px auto, auto, auto min(48px, 100%), auto;
   }
 }
 

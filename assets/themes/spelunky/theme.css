@@ -229,6 +229,7 @@ pre {
 .map-room[data-zone="tiamat"]         { --zone: #8fb8ff; }
 .map-room[data-zone="sunken-city"]    { --zone: #c6e06a; }
 .map-room[data-zone="eggplant-world"] { --zone: #d79cff; }
+.map-room[data-zone="hundun"]         { --zone: #f2c14e; }
 
 .map-room[data-zone] {
   box-shadow:
@@ -347,6 +348,19 @@ pre {
     linear-gradient(90deg, rgb(19 9 26 / 0.82) 0 45%, rgb(19 9 26 / 0.15)),
     url("/assets/themes/spelunky/img/zones/eggplant-world-corner.svg") 100% calc(100% - 8px) / auto min(96px, 100% - 8px) no-repeat,
     linear-gradient(#1e0f28, #13091a);
+}
+
+.map-room[data-zone="hundun"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/hundun-top.svg") 0 0 / 96px 12px repeat-x,
+    url("/assets/themes/spelunky/img/zones/hundun-bottom.svg") 0 100% / 128px 20px repeat-x,
+    linear-gradient(90deg, rgb(7 4 15 / 0.75) 0 40%, rgb(7 4 15 / 0.1)),
+    url("/assets/themes/spelunky/img/zones/hundun-corner.svg") 100% 50% / auto min(96px, 100%) no-repeat,
+    linear-gradient(#140a24, #07040f);
+  box-shadow:
+    0 4px 0 #0b0603,
+    inset 0 0 0 1px var(--zone),
+    0 0 1.5em rgb(185 168 255 / 0.3);
 }
 
 @media (max-width: 30rem) {

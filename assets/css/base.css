@@ -1003,12 +1003,7 @@ pre code {
 }
 
 .map-room--end {
-  text-align: center;
   border-color: var(--accent);
-}
-
-.prose .map-room--end h3 {
-  justify-content: center;
 }
 
 .map-room--roaming {

@@ -651,6 +651,57 @@ def eggplant_corner(r):
     c.set(19, 16, "#d6a4ff")
     return c
 
+# ---------------------------------------------------------------- hundun
+
+def hundun_top(r):
+    c = Canvas(64, 8)
+    for x in range(64):
+        c.set(x, 0, "#2a1440")
+        if r.random() < 0.6:
+            c.set(x, 1, "#3a1f5a")
+    for _ in range(9):
+        c.set(r.randrange(64), r.randint(2, 7), r.choice(("#ffffff", "#bfe6ff", "#ffe68a")))
+    return c
+
+
+def hundun_bottom(r):
+    c = Canvas(64, 10)
+    ground(c, r, ["#7a5ad0", "#4a2f8a", "#331f66", "#24154a"], waves=((3, 1.0), (7, 0.5)), base=5)
+    for _ in range(8):
+        c.set(r.randrange(64), r.randint(0, 3), r.choice(("#ffffff", "#bfe6ff")))
+    return c
+
+
+def hundun_corner(r):
+    c = Canvas(32, 32)
+    # The portal to the Cosmic Ocean: a ring of light around a swirl of stars.
+    cx, cy = 18, 16
+    for y in range(32):
+        for x in range(32):
+            dx, dy = (x - cx) / 12, (y - cy) / 14
+            d = math.sqrt(dx * dx + dy * dy)
+            if d > 1:
+                continue
+            ang = math.atan2(dy, dx)
+            swirl = math.sin(ang * 3 + d * 9)
+            if d > 0.86:
+                col = "#ffe68a" if (x + y) % 3 else "#f2c14e"
+            elif d > 0.74:
+                col = "#b9a8ff"
+            elif swirl > 0.35:
+                col = "#5a3fb0"
+            elif swirl > -0.2:
+                col = "#3a2580"
+            else:
+                col = "#1a0f40"
+            c.set(x, y, col)
+    for _ in range(14):
+        a, d = r.uniform(0, math.tau), r.uniform(0, 0.7)
+        c.set(round(cx + math.cos(a) * d * 12), round(cy + math.sin(a) * d * 14), r.choice(("#ffffff", "#bfe6ff", "#ffe68a")))
+    c.set(cx, cy, "#ffffff")
+    return c
+
+
 PIECES = {
     "jungle": (jungle_top, jungle_bottom, jungle_corner),
     "volcana": (volcana_top, volcana_bottom, volcana_corner),
@@ -663,6 +714,7 @@ PIECES = {
     "tiamat": (tiamat_top, tiamat_bottom, tiamat_corner),
     "sunken-city": (sunken_top, sunken_bottom, sunken_corner),
     "eggplant-world": (eggplant_top, eggplant_bottom, eggplant_corner),
+    "hundun": (hundun_top, hundun_bottom, hundun_corner),
 }
 
 

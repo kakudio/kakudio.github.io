@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shell Game · Kakudio</title>
+  <meta name="description" content="Shell Game is my key item randomizer for Spelunky 2. Here's what it shuffles, the 40 places things can turn up, how every seed stays winnable, its options, how to install the beta and how to report a bug.">
+  <link rel="canonical" href="https://kakudio.dev/shell-game/">
+  <meta name="theme-color" content="#150d07">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kakudio">
+  <meta property="og:title" content="Shell Game · Kakudio">
+  <meta property="og:description" content="A key item randomizer for Spelunky 2. See what it shuffles, where things can turn up, how every seed reaches the Cosmic Ocean, and how to install the beta.">
+  <meta property="og:url" content="https://kakudio.dev/shell-game/">
+  <meta property="og:image" content="https://kakudio.dev/assets/img/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Kakudio wordmark in gold pixel lettering in a torch-lit cave, with the line: Go deeper into the games you love.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shell Game · Kakudio">
+  <meta name="twitter:description" content="A key item randomizer for Spelunky 2. See what it shuffles, where things can turn up, how every seed reaches the Cosmic Ocean, and how to install the beta.">
+  <meta name="twitter:image" content="https://kakudio.dev/assets/img/social-preview.png">
+  <meta name="twitter:image:alt" content="The Kakudio wordmark in gold pixel lettering in a torch-lit cave, with the line: Go deeper into the games you love.">
+
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/base.css">
+  <link rel="stylesheet" href="/assets/themes/spelunky/theme.css">
+</head>
+<body>
+  <a class="skip-link" href="#how-it-works">Skip to how Shell Game works</a>
+
+  <header class="hero hero--page">
+    <div class="wrap">
+      <p class="eyebrow"><a href="/">Kakudio</a></p>
+      <h1 class="page-title">Shell Game <span class="status-badge">Beta</span></h1>
+      <p class="page-descriptor">Shell Game — a key item randomizer for Spelunky 2</p>
+      <div class="actions">
+        <a class="button button--primary" href="https://github.com/kakudio/spelunky2-shell-game/releases/latest">Download Beta</a>
+        <a class="button" href="https://github.com/kakudio/spelunky2-shell-game">View on GitHub</a>
+        <a class="button" href="https://discord.gg/9tXdYSC55W">Join Discord</a>
+      </div>
+      <p class="release">The latest release is <a href="https://github.com/kakudio/spelunky2-shell-game/releases/tag/v0.1.0">v0.1.0</a>, released <time datetime="2026-08-01">1 August 2026</time>. Release notes for every version are on <a href="https://github.com/kakudio/spelunky2-shell-game/releases">Shell Game's releases page</a>.</p>
+    </div>
+    <div class="ground" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <section class="guide" id="how-it-works" aria-labelledby="how-it-works-heading">
+      <div class="wrap prose">
+        <h2 id="how-it-works-heading">How Shell Game works</h2>
+        <p>The ultimate goal of the game remains the same: beat Hundun with the Arrow of Light and Hou Yi's Bow, and access the Cosmic Ocean. However, the items you need to get there have moved. Any boss or quest in the game might have an item you want or need to finish the run.</p>
+        <p>Each seed is replayable, letting you build a new route one run at a time. Every item, from the Ankh down to a pair of Spring Shoes, turns up in the same place until you change seeds, while the game's regular generation logic continues to provide the variety you are accustomed to. You can learn a specific seed and move on when you want a new challenge.</p>
+        <p>Spelunky 2 has locations and quests that always provide the same items: Olmec's Ankh, Vlad's Crown, Excalibur in its stone, the Tablet of Destiny from Kingu or Osiris, the Bow and the Arrow of Light from the Moon and Sun Challenges. Shell Game takes the important moments (bosses, quests, etc.), called checks, and assigns each one a reward from the game's item pool.</p>
+        <p>The following items are considered progression items and will always be available in the route before they are needed in game.</p>
+        <ul>
+          <li>The <strong>Udjat Eye</strong> is available before the Black Market and Vlad's Castle.</li>
+          <li>The <strong>Skeleton Key</strong> is available before the locked room at Madame Tusk's Dice House.</li>
+          <li><strong>Excalibur</strong> is available before the Kingu fight.</li>
+          <li>The <strong>Scepter</strong> is available before the City of Gold.</li>
+          <li>The <strong>Ankh</strong>, the <strong>Crown</strong> and the <strong>Hedjet</strong> are available before the Kingu and Osiris boss fights.</li>
+          <li>The <strong>Alien Compass</strong> is available before the Mothership and the Lahamu fight.</li>
+          <li>The <strong>Eggplant</strong> is available by the Ice Caves.</li>
+          <li>The <strong>Tablet of Destiny</strong> and <strong>Madame Tusk's Idol</strong> are available by Neo Babylon.</li>
+          <li><strong>Hou Yi's Bow</strong> and the <strong>Arrow of Light</strong> are available before Hundun.</li>
+        </ul>
+        <p>The rest of the pool is gear you can win without:</p>
+        <div class="treasure-chest">
+          <ul class="loot">
+            <li>Cape</li>
+            <li>Vlad's Cape</li>
+            <li>Jetpack</li>
+            <li>Telepack</li>
+            <li>Powerpack</li>
+            <li>Hoverpack</li>
+            <li>Kapala</li>
+            <li>Elixir</li>
+            <li>Eggplant Crown</li>
+            <li>True Crown</li>
+            <li>Royal Jelly</li>
+            <li>Spike Shoes</li>
+            <li>Spring Shoes</li>
+            <li>Climbing Gloves</li>
+            <li>Pitcher's Mitt</li>
+            <li>Paste</li>
+            <li>Spectacles</li>
+            <li>Compass</li>
+            <li>Mattock</li>
+            <li>Teleporter</li>
+            <li>Clone Gun</li>
+            <li>Freeze Ray</li>
+            <li>Shotgun</li>
+            <li>Plasma Cannon</li>
+            <li>Bomb Box</li>
+            <li>Bag of ropes</li>
+            <li>Bag of bombs and ropes</li>
+          </ul>
+        </div>
+        <p>Every seed has a way to the Cosmic Ocean. Before your run starts, the mod builds the whole layout from the seed and checks it: at least one way through the game has to collect the Tablet of Destiny, Hou Yi's Bow and the Arrow of Light and reach Hundun, and every check has to be reachable on some way through.</p>
+      </div>
+    </section>
+
+    <section class="guide" id="where-things-turn-up" aria-labelledby="where-heading">
+      <div class="wrap prose">
+        <h2 id="where-heading">Where things turn up</h2>
+        <ol class="dungeon-map" aria-label="The areas of a run, in order, with their checks">
+        <li class="map-stage">
+          <div class="map-room" data-zone="dwelling">
+            <h3>Dwelling</h3>
+            <ul class="map-checks">
+              <li>Udjat Eye chest</li>
+              <li>Yang's Treasure</li>
+              <li>Quillback</li>
+            </ul>
+          </div>
+        </li>
+        <li class="map-stage map-stage--fork">
+          <div class="map-room" data-zone="jungle">
+            <h3>Jungle</h3>
+            <ul class="map-checks">
+              <li>Black Market</li>
+              <li>Queen Bee</li>
+              <li>Moon Challenge</li>
+              <li>The Three Sisters</li>
+            </ul>
+          </div>
+          <div class="map-room" data-zone="volcana">
+            <h3>Volcana</h3>
+            <ul class="map-checks">
+              <li>Moon Challenge</li>
+              <li>Van Horsing's rescue</li>
+              <li>Vlad</li>
+              <li>Vlad's Castle</li>
+            </ul>
+          </div>
+        </li>
+        <li class="map-stage">
+          <div class="map-room" data-zone="olmec">
+            <h3>Olmec</h3>
+            <ul class="map-checks">
+              <li>Olmec's Ankh</li>
+            </ul>
+          </div>
+        </li>
+        <li class="map-stage map-stage--fork">
+          <div class="map-room" data-zone="tide-pool">
+            <h3>Tide Pool</h3>
+            <ul class="map-checks">
+              <li>Madame Tusk's Dice House</li>
+              <li>Idol Heist</li>
+              <li>Excalibur's stone</li>
+              <li>Great Humphead's cave Idol</li>
+              <li>Great Humphead</li>
+              <li>Stars Challenge</li>
+              <li>Kingu</li>
+            </ul>
+          </div>
+          <div class="map-room" data-zone="temple">
+            <h3>Temple</h3>
+            <ul class="map-checks">
+              <li>Anubis</li>
+              <li>Van Horsing's reward</li>
+              <li>Stars Challenge</li>
+              <li>Anubis II</li>
+              <li>Osiris</li>
+            </ul>
+          </div>
+        </li>
+        <li class="map-stage">
+          <div class="map-room" data-zone="ice-caves">
+            <h3>Ice Caves</h3>
+            <ul class="map-checks">
+              <li>Yeti Queen</li>
+              <li>Yeti King</li>
+              <li>Mothership</li>
+              <li>Lahamu</li>
+            </ul>
+          </div>
+        </li>
+        <li class="map-stage">
+          <div class="map-room" data-zone="neo-babylon">
+            <h3>Neo Babylon</h3>
+            <ul class="map-checks">
+              <li>Madame Tusk's Palace</li>
+              <li>Tusk's Vault</li>
+            </ul>
+          </div>
+        </li>
+        <li class="map-stage">
+          <div class="map-room" data-zone="tiamat">
+            <h3>Tiamat</h3>
+            <ul class="map-checks">
+              <li>Tiamat</li>
+            </ul>
+          </div>
+        </li>
+        <li class="map-stage map-stage--detour">
+          <div class="map-room" data-zone="sunken-city">
+            <h3>Sunken City</h3>
+            <ul class="map-checks">
+              <li>Sun Challenge</li>
+              <li>Sun Challenge supplies</li>
+            </ul>
+          </div>
+          <div class="map-room map-room--side" data-zone="eggplant-world">
+            <h3>Eggplant World</h3>
+            <ul class="map-checks">
+              <li>Eggplant Crown</li>
+            </ul>
+          </div>
+        </li>
+        <li class="map-stage">
+          <div class="map-room map-room--end" data-zone="hundun">
+            <h3>Hundun</h3>
+            <p>The way to the Cosmic Ocean</p>
+          </div>
+        </li>
+        </ol>
+
+        <h3 class="map-roamers-heading">Anywhere in the run</h3>
+        <p>These follow the characters and altars wherever the game puts them.</p>
+        <div class="map-roamers">
+          <div class="map-room" data-zone="sparrow">
+            <h4>Sparrow</h4>
+            <ul class="map-checks">
+              <li>Shoplifter</li>
+              <li>Idol Heist</li>
+              <li>Tusk's Vault</li>
+            </ul>
+          </div>
+          <div class="map-room" data-zone="beg">
+            <h4>Beg</h4>
+            <ul class="map-checks">
+              <li>Angering Kali</li>
+              <li>You Love Chaos</li>
+            </ul>
+          </div>
+          <div class="map-room" data-zone="kali">
+            <h4>Kali</h4>
+            <ul class="map-checks">
+              <li>Giving Gifts</li>
+              <li>Sacrifice</li>
+              <li>Making Kali Happy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide" id="options" aria-labelledby="options-heading">
+      <div class="wrap prose">
+        <h2 id="options-heading">Options</h2>
+        <p>You'll find them in Modlunky 2's options menu, or in Overlunky under <strong>F8 → Options</strong>.</p>
+        <dl class="options">
+          <dt>Enable Shell Game</dt>
+          <dd>Turns the whole mod on or off.</dd>
+          <dt>Randomizer Seed and New Seed</dt>
+          <dd>Randomizer Seed fixes your layout. Set a number to play that layout every time, or leave it at <code>0</code> and your next run picks a new seed, which stays set for the runs after it. New Seed sets it back to <code>0</code>, so your next run gets a new layout.</dd>
+          <dt>Kali Item Recovery</dt>
+          <dd>The items that you bring with you to the altar in the City of Gold will be restored by the altar in the Duat.</dd>
+          <dt>Balanced Duat Kali Rewards</dt>
+          <dd>
+            <p>Changes what Kali's altar in the Duat gives you for your favor. The more favor you've built up with Kali, the bigger the reward:</p>
+            <ul>
+              <li>a Player Bag of 5 bombs and 5 ropes, instead of a cooked turkey;</li>
+              <li>a Player Bag of 10 bombs and 10 ropes, instead of a Bomb Bag;</li>
+              <li>at the top, a Player Bag of 10 bombs and 10 ropes with Royal Jelly, instead of a Bomb Box. You get one Royal Jelly, and another for each further step of favor, in order to restore the health you lost to enter the Duat.</li>
+            </ul>
+          </dd>
+          <dt>True Crown Restoration</dt>
+          <dd>After the True Crown encounter, Kali's curse is lifted and you are restored to 4 health.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="guide" id="install" aria-labelledby="install-heading">
+      <div class="wrap prose">
+        <h2 id="install-heading">Install</h2>
+        <p>You need:</p>
+        <ul>
+          <li><strong>Spelunky 2</strong> on Steam;</li>
+          <li><strong>Modlunky 2</strong>, from <a href="https://github.com/spelunky-fyi/modlunky2/releases">its releases on GitHub</a>;</li>
+          <li><strong>Playlunky</strong>, which you install from the Playlunky tab in Modlunky 2.</li>
+        </ul>
+        <p>Then:</p>
+        <ol>
+          <li>Download Shell Game's zip file from <a href="https://github.com/kakudio/spelunky2-shell-game/releases/latest">the latest release</a>.</li>
+          <li>Open Modlunky 2.</li>
+          <li>In the <strong>Mods</strong> tab, choose <strong>Open Mods Folder</strong>.</li>
+          <li>Extract the zip into that folder.</li>
+          <li>In Modlunky 2's <strong>Playlunky</strong> tab, find <strong>Shell Game</strong> in the list of mods and turn it on.</li>
+          <li>Press <strong>Play!</strong> to start Spelunky 2 with Shell Game.</li>
+        </ol>
+        <p>These steps follow <a href="https://github.com/kakudio/spelunky2-shell-game#installation">the Installation section of Shell Game's README</a>. If the two ever disagree, go with the README.</p>
+      </div>
+    </section>
+
+    <section class="guide" id="found-a-bug" aria-labelledby="found-a-bug-heading">
+      <div class="wrap prose">
+        <h2 id="found-a-bug-heading">Found a bug?</h2>
+        <p>At the start of every run, Shell Game writes a run log to <code>Mods\<wbr>Data\<wbr>ShellGame\<wbr>run_reports</code> in your Spelunky 2 folder. It holds your seeds, the full layout for the run and the mod's logs, which is what I need to see what went wrong. It keeps your newest 30 runs.</p>
+        <p>Keep <strong>Generate Spoiler</strong> and <strong>Generate Logs</strong> on if your build shows them in the options, so the run log has both. Builds that don't show them always write both.</p>
+        <p>The run log gives away the whole layout, so don't open it while you're still playing that seed.</p>
+        <div class="actions">
+          <a class="button button--primary" href="/bug-report/">Report a bug</a>
+        </div>
+        <p>On the <a href="/bug-report/">bug-report page</a> you pick the run log for the run that went wrong, tell me what happened, and send it. No account needed.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <p class="footer-mark">Kakudio</p>
+      <p><a class="text-link" href="/">Back to kakudio.dev</a></p>
+      <p class="legal">© 2026 Kakudio. Spelunky and related properties belong to their respective owners. Shell Game is an unofficial mod; Kakudio is not affiliated with or endorsed by Mossmouth.</p>
+    </div>
+  </footer>
+</body>
+</html>

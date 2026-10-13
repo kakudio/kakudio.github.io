@@ -49,6 +49,13 @@
 
   --ground-height: 0px;
 
+  --map-path: var(--line);
+  --map-path-style: solid;
+  --map-path-width: 3px;
+  --map-room-art-top: 0px;
+  --chest-lid-height: 0px;
+  --map-room-art-bottom: 0px;
+
   --space: clamp(4rem, 10vw, 8rem);
   --gutter: clamp(1rem, 5vw, 3rem);
 }
@@ -775,6 +782,294 @@ pre code {
   font-size: 1.25em;
   color: var(--accent);
   white-space: nowrap;
+}
+
+/* Project page */
+
+.page-title:has(> .status-badge) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
+}
+
+.page-title:has(+ .page-descriptor) {
+  margin-bottom: 0.75rem;
+}
+
+.page-descriptor {
+  color: var(--muted);
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  margin-bottom: 2rem;
+}
+
+.release {
+  max-width: 46rem;
+  margin: 1.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.prose .options {
+  margin: 0 0 1.25rem;
+}
+
+.options dt {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.options dd {
+  margin: 0.25rem 0 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--line);
+}
+
+.options dd + dt {
+  margin-top: 1.25rem;
+}
+
+.prose .options dd > p {
+  margin: 0 0 0.5rem;
+}
+
+.prose .options dd > ul {
+  margin: 0;
+}
+
+/* Treasure chest: a framed grid of items. A theme can give it a lid by
+   setting --chest-lid-height and drawing the lid in that space. */
+
+.prose .treasure-chest {
+  position: relative;
+  max-width: 46rem;
+  margin: 0 0 1.5rem;
+  padding: calc(1rem + var(--chest-lid-height)) 1rem 1rem;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-image), var(--surface);
+}
+
+.prose .loot {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prose .loot li {
+  margin: 0;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 30rem) {
+  .prose .loot {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Dungeon map: each area is a room, joined top to bottom by a path that
+   splits at a fork and joins again after it. A detour is a room beside the
+   path: reached from the room on its left, it rejoins the path below. */
+
+.prose .dungeon-map {
+  --fork-gap: 2.5rem;
+  --path-gap: 2rem;
+  --detour-drop: 1.75rem;
+  --path: var(--map-path-width) var(--map-path-style) var(--map-path);
+  display: grid;
+  gap: var(--path-gap);
+  margin: 0 0 var(--path-gap);
+  padding: 0;
+  list-style: none;
+}
+
+.prose .dungeon-map > li + li {
+  margin-top: 0;
+}
+
+.map-stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+}
+
+.map-stage--fork,
+.map-stage--detour {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--fork-gap);
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+/* The path down from the room above. */
+.map-stage + .map-stage::before,
+.map-stage--fork + .map-stage::after,
+.map-stage--detour + .map-stage::after,
+.map-stage--fork::after,
+.map-stage--detour::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.map-stage + .map-stage::before {
+  top: calc(-1 * var(--path-gap));
+  left: 50%;
+  height: var(--path-gap);
+  border-left: var(--path);
+  transform: translateX(-50%);
+}
+
+/* A fork: the path splits over the two rooms... */
+.map-stage + .map-stage--fork::before {
+  height: calc(var(--path-gap) / 2);
+}
+
+.map-stage--fork::after {
+  top: calc(-1 * var(--path-gap) / 2);
+  left: calc((100% - var(--fork-gap)) / 4);
+  right: calc((100% - var(--fork-gap)) / 4);
+  height: calc(var(--path-gap) / 2);
+  border: var(--path);
+  border-bottom: 0;
+}
+
+/* A detour: the path bends down into the left room, and a branch runs
+   across to the room beside it. */
+.map-stage + .map-stage--detour::before {
+  height: calc(var(--path-gap) / 2);
+}
+
+.map-stage--detour > .map-room:first-child {
+  position: relative;
+}
+
+.map-stage + .map-stage--detour > .map-room:first-child::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--path-gap) / 2 - 2px);
+  left: 50%;
+  width: calc(50% + var(--fork-gap) / 2);
+  height: calc(var(--path-gap) / 2);
+  border-top: var(--path);
+  border-left: var(--path);
+  transform: translateX(calc(-1 * var(--map-path-width) / 2));
+  pointer-events: none;
+}
+
+.map-stage--detour > .map-room + .map-room {
+  margin-top: var(--detour-drop);
+}
+
+.map-stage--detour::after {
+  top: calc(var(--detour-drop) + 1.25rem);
+  left: calc((100% - var(--fork-gap)) / 2);
+  width: var(--fork-gap);
+  border-top: var(--path);
+}
+
+/* Both join again below them. */
+.map-stage--fork + .map-stage::before,
+.map-stage--detour + .map-stage::before {
+  top: calc(-1 * var(--path-gap) / 2);
+  height: calc(var(--path-gap) / 2);
+}
+
+.map-stage--fork + .map-stage::after,
+.map-stage--detour + .map-stage::after {
+  top: calc(-1 * var(--path-gap));
+  left: calc((100% - var(--fork-gap)) / 4);
+  right: calc((100% - var(--fork-gap)) / 4);
+  height: calc(var(--path-gap) / 2);
+  border: var(--path);
+  border-top: 0;
+}
+
+.map-room {
+  width: 100%;
+  max-width: 22rem;
+  padding: calc(0.75rem + var(--map-room-art-top)) 1rem calc(0.75rem + var(--map-room-art-bottom));
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-image), var(--surface);
+}
+
+.map-stage--fork .map-room {
+  max-width: none;
+}
+
+.map-room--side {
+  border-style: dashed;
+}
+
+.map-room--end {
+  border-color: var(--accent);
+}
+
+.prose .map-roamers-heading {
+  margin-top: 2.5rem;
+}
+
+.prose .map-roamers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.map-roamers .map-room {
+  max-width: none;
+}
+
+.prose .map-room h3,
+.prose .map-room h4 {
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+  margin: 0 0 0.4rem;
+}
+
+.prose .map-room p {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.prose .map-room--end p {
+  margin: 0;
+}
+
+.prose .map-checks {
+  margin: 0;
+  list-style-type: disc;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.prose .map-checks li + li {
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 30rem) {
+  .prose .dungeon-map {
+    --fork-gap: 1.75rem;
+  }
+
+  .map-room {
+    padding: calc(0.6rem + var(--map-room-art-top)) 0.7rem calc(0.6rem + var(--map-room-art-bottom));
+  }
+
+  .prose .map-checks {
+    padding-left: 0.9rem;
+    font-size: 0.85rem;
+  }
 }
 
 /* 404 */

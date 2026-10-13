@@ -837,6 +837,48 @@ pre code {
   margin: 0;
 }
 
+/* Guide pages: /shell-game/<area>/ has one .entry section per check, quest
+   or boss. The section's id is the anchor other pages link to. */
+
+.prose .guide-contents {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.5rem 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.prose .guide-contents li + li {
+  margin-top: 0;
+}
+
+.prose .guide-contents a {
+  font-weight: 600;
+}
+
+.prose .entry h2 {
+  margin-bottom: 0.5rem;
+}
+
+.prose .entry-kind {
+  font-family: var(--font-label);
+  font-size: 0.85rem;
+  text-transform: var(--label-case);
+  letter-spacing: var(--label-tracking);
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.prose .entry h3 {
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  margin: 1.75rem 0 0.75rem;
+}
+
+.prose .entry-back {
+  margin: 1.75rem 0 0;
+  font-size: 0.95rem;
+}
+
 /* Treasure chest: a framed grid of items. A theme can give it a lid by
    setting --chest-lid-height and drawing the lid in that space. */
 

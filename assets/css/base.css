@@ -874,6 +874,24 @@ pre code {
   margin: 1.75rem 0 0.75rem;
 }
 
+/* A roamer's entry (/shell-game/anywhere/) holds one .entry-check heading per
+   check, each with its own id, and h4s for its parts. */
+
+.prose .entry-check {
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px dashed var(--line);
+}
+
+.prose .entry-check + .entry-kind {
+  margin-bottom: 1rem;
+}
+
+.prose .entry h4 {
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+  margin: 1.5rem 0 0.85rem;
+}
+
 .prose .entry-back {
   margin: 1.75rem 0 0;
   font-size: 0.95rem;

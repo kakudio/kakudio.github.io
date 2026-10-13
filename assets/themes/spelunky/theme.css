@@ -227,7 +227,7 @@ pre {
 .map-room[data-zone="ice-caves"]      { --zone: #b8e8ff; }
 .map-room[data-zone="neo-babylon"]    { --zone: #b9a8ff; }
 .map-room[data-zone="tiamat"]         { --zone: #8fb8ff; }
-.map-room[data-zone="sunken-city"]    { --zone: #ff9fb4; }
+.map-room[data-zone="sunken-city"]    { --zone: #c6e06a; }
 .map-room[data-zone="eggplant-world"] { --zone: #d79cff; }
 
 .map-room[data-zone] {
@@ -335,9 +335,9 @@ pre {
   background:
     url("/assets/themes/spelunky/img/zones/sunken-city-top.svg") 0 0 / 96px 15px repeat-x,
     url("/assets/themes/spelunky/img/zones/sunken-city-bottom.svg") 0 100% / 128px 24px repeat-x,
-    linear-gradient(90deg, rgb(26 7 14 / 0.82) 0 45%, rgb(26 7 14 / 0.15)),
+    linear-gradient(90deg, rgb(11 20 12 / 0.82) 0 45%, rgb(11 20 12 / 0.15)),
     url("/assets/themes/spelunky/img/zones/sunken-city-corner.svg") 100% calc(100% - 12px) / auto min(96px, 100% - 12px) no-repeat,
-    linear-gradient(#2a0c16, #1a070e);
+    linear-gradient(#162414, #0b140c);
 }
 
 .map-room[data-zone="eggplant-world"] {

@@ -561,34 +561,49 @@ def tiamat_corner(r):
 
 def sunken_top(r):
     c = Canvas(64, 10)
-    drips(c, r, ["#6a2238", "#7a2a44", "#5a1c30"], "#a83a5a", "#ff9fb4", spacing=(3, 7), length=(1, 6))
+    # Hanging swamp moss and slime.
+    drips(c, r, ["#2a3a14", "#334a18", "#24320f"], "#5a7a24", "#a8c84a", spacing=(3, 7), length=(1, 6))
     return c
 
 
 def sunken_bottom(r):
     c = Canvas(64, 12)
-    ground(c, r, ["#ff9fb4", "#c9506e", "#a83a5a", "#7a2a44", "#5a1c30"], waves=((5, 1.2), (11, 0.6)), base=6)
+    ground(c, r, ["#6a8a3a", "#3f5a24", "#33481c", "#283a16", "#1f2e11"], waves=((4, 0.8), (9, 0.4)), base=6)
+    # Lily pads floating on the murky water.
+    for x0 in (5, 26, 47):
+        for dx in range(-3, 4):
+            c.set(wrap(c, x0 + dx), 5, "#7fae3a" if dx else "#33481c")
     for _ in range(5):
-        x, y = r.randrange(64), r.randint(1, 4)
-        c.set(x, y, "#ff9fb4")
+        c.set(r.randrange(64), r.randint(8, 11), "#8aa84a")
     return c
 
 
 def sunken_corner(r):
     c = Canvas(32, 32)
-    # A watchful eye on a fleshy stalk.
-    for y in range(18, 32):
-        sway = round(math.sin(y / 4) * 1.5)
-        for x in range(23 + sway, 27 + sway):
-            c.set(x, y, "#a83a5a" if x < 25 + sway else "#7a2a44")
-    ellipse(c, 24, 13, 7, 7, "#f6e6e0")
-    ellipse(c, 25, 13, 3.5, 3.5, "#c9506e")
-    ellipse(c, 25, 13, 1.6, 1.6, "#1a0a10")
-    c.set(23, 11, "#ffffff")
-    for a in range(0, 360, 30):
-        x = 24 + math.cos(math.radians(a)) * 7
-        y = 13 + math.sin(math.radians(a)) * 7
-        c.set(round(x), round(y), "#c9506e")
+    # A frog on a lily pad, watching a fly.
+    for x in range(32):
+        c.set(x, 30, "#3f5a24")
+        c.set(x, 31, "#283a16")
+    ellipse(c, 21, 28, 9, 2.2, "#7fae3a")
+    c.set(21, 28, "#33481c")
+    c.set(22, 27, "#33481c")
+    body, dark, belly = "#5fae4a", "#3f7a2f", "#c8e07a"
+    ellipse(c, 21, 22, 6.5, 4.5, body)
+    ellipse(c, 21, 24, 4.5, 2.2, belly)
+    for ex in (17, 25):
+        ellipse(c, ex, 17, 2.2, 2.2, body)
+        c.set(ex, 17, "#f2e6a0")
+        c.set(ex, 16, "#1a1a0a")
+    for x in range(18, 25):
+        c.set(x, 21, dark)
+    for fx in (14, 27):
+        for x in range(fx - 1, fx + 2):
+            c.set(x, 26, dark)
+    # The fly.
+    c.set(9, 9, "#1a1a0a")
+    c.set(10, 9, "#1a1a0a")
+    c.set(9, 8, "#cfe8ff")
+    c.set(11, 8, "#cfe8ff")
     return c
 
 

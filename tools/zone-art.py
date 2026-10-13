@@ -704,51 +704,63 @@ def hundun_corner(r):
 
 # ---------------------------------------------------------------- sparrow
 
+def feather(c, x0, y0, length, ang, vane, shaft, edge=None):
+    """A feather from (x0, y0), pointing along ang, with a pale shaft."""
+    for i in range(length):
+        t = i / max(1, length - 1)
+        x = x0 + math.cos(ang) * i
+        y = y0 + math.sin(ang) * i
+        w = math.sin(math.pi * min(1, t * 1.15)) * length / 5
+        nx, ny = -math.sin(ang), math.cos(ang)
+        for k in range(-round(w), round(w) + 1):
+            col = edge if edge and abs(k) == round(w) and k else vane
+            c.set(round(x + nx * k), round(y + ny * k), col)
+        c.set(round(x), round(y), shaft)
+
+
 def sparrow_top(r):
-    c = Canvas(64, 8)
-    # A rope strung along the top, with a few knots.
+    c = Canvas(64, 10)
+    # Dark feathers hanging from a black band.
     for x in range(64):
-        y = 1 + round(math.sin(x / 64 * math.tau) * 0.8)
-        c.set(x, y, "#a8743f" if x % 3 else "#8c5a33")
-        c.set(x, y + 1, "#6b4424")
-    for x in range(8, 64, 16):
-        for y in range(2, 6):
-            c.set(x, y, "#a8743f")
-        c.set(x, 6, "#c9945a")
+        c.set(x, 0, "#120a18")
+        c.set(x, 1, "#1e1028" if r.random() < 0.7 else "#120a18")
+    x = 0
+    while x < 64:
+        x += r.randint(6, 11)
+        feather(c, x, 1, r.randint(6, 9), math.pi / 2 + r.uniform(-0.25, 0.25), "#3a2458", "#8a6ab0")
     return c
 
 
 def sparrow_bottom(r):
     c = Canvas(64, 10)
-    ground(c, r, ["#4f8a6a", "#3a6a52", "#2a4f3d", "#1f3a2d"], waves=((2, 0.8), (6, 0.4)), base=5)
-    for _ in range(4):
-        x = r.randrange(64)
-        c.set(x, 4, "#f2c14e")
-        c.set(wrap(c, x + 1), 4, "#ffe68a")
+    ground(c, r, ["#3a2458", "#24163a", "#1a1028", "#120a18"], waves=((3, 0.7), (7, 0.3)), base=6)
+    for x0 in (9, 33, 52):
+        feather(c, x0, 5, 6, -0.15, "#1e1028", "#a88ad0")
     return c
 
 
 def sparrow_corner(r):
     c = Canvas(32, 32)
-    # A sparrow perched on a sack of loot.
-    ellipse(c, 21, 25, 8, 6, "#8a6a46")
-    ellipse(c, 19, 24, 5, 4, "#a8865a")
-    for x in range(18, 25):
-        c.set(x, 19, "#6b4a2a")
-    c.set(21, 18, "#f2c14e")
-    c.set(22, 18, "#ffe68a")
-    c.set(23, 19, "#f2c14e")
-    # The bird.
-    ellipse(c, 20, 13, 4, 3, "#9a6a3a")
-    ellipse(c, 19, 14, 2.5, 1.6, "#e8d0a8")
-    ellipse(c, 24, 10, 2.2, 2.2, "#7a5230")
-    c.set(25, 9, "#1a0f08")
-    c.set(27, 10, "#f2c14e")
-    c.set(26, 10, "#f2c14e")
-    for x in range(13, 17):
-        c.set(x, 12 + (16 - x) // 2, "#6b4424")
-    c.set(20, 16, "#c9945a")
-    c.set(22, 16, "#c9945a")
+    # A silver key lying across a black feather.
+    feather(c, 6, 28, 26, -0.95, "#24163a", "#8a6ab0", edge="#3a2458")
+    silver, shine, shade = "#c8ccd6", "#f2f4f8", "#8a8e9a"
+    # Bow of the key: a ring.
+    for y in range(4, 15):
+        for x in range(14, 27):
+            d = math.hypot(x - 20, y - 9.5)
+            if 3.2 <= d <= 5.4:
+                c.set(x, y, shine if (x < 19 and y < 9) else (shade if x > 22 and y > 10 else silver))
+    # Shaft.
+    for y in range(15, 29):
+        c.set(19, y, shine)
+        c.set(20, y, silver)
+        c.set(21, y, shade)
+    # Bit (teeth).
+    for y, w in ((24, 4), (25, 4), (27, 3), (28, 3)):
+        for x in range(22, 22 + w):
+            c.set(x, y, silver if y % 2 == 0 else shade)
+    for x in range(18, 23):
+        c.set(x, 15, silver)
     return c
 
 

@@ -827,7 +827,8 @@ pre code {
 }
 
 /* Dungeon map: each area is a room, joined top to bottom by a path that
-   splits at a fork and joins again after it. */
+   splits at a fork and joins again after it. A detour is a room beside the
+   path: reached from the room on its left, it rejoins the path below. */
 
 .prose .dungeon-map {
   --fork-gap: 2.5rem;
@@ -850,7 +851,8 @@ pre code {
   justify-items: center;
 }
 
-.map-stage--fork {
+.map-stage--fork,
+.map-stage--detour {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: var(--fork-gap);
   align-items: stretch;
@@ -860,7 +862,9 @@ pre code {
 /* The path down from the room above. */
 .map-stage + .map-stage::before,
 .map-stage--fork + .map-stage::after,
-.map-stage--fork::after {
+.map-stage--detour + .map-stage::after,
+.map-stage--fork::after,
+.map-stage--detour::after {
   content: "";
   position: absolute;
   pointer-events: none;
@@ -888,32 +892,51 @@ pre code {
   border-bottom: 0;
 }
 
-/* ...and joins again below them. */
-.map-stage--fork + .map-stage::before {
+/* A detour: the path bends down into the left room, and a branch runs
+   across to the room beside it. */
+.map-stage + .map-stage--detour::before {
+  height: calc(var(--path-gap) / 2);
+}
+
+.map-stage--detour > .map-room:first-child {
+  position: relative;
+}
+
+.map-stage + .map-stage--detour > .map-room:first-child::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--path-gap) / 2 - 2px);
+  left: 50%;
+  width: calc(50% + var(--fork-gap) / 2);
+  height: calc(var(--path-gap) / 2);
+  border-top: var(--path);
+  border-left: var(--path);
+  transform: translateX(calc(-1 * var(--map-path-width) / 2));
+  pointer-events: none;
+}
+
+.map-stage--detour::after {
+  top: 50%;
+  left: calc((100% - var(--fork-gap)) / 2);
+  width: var(--fork-gap);
+  border-top: var(--path);
+}
+
+/* Both join again below them. */
+.map-stage--fork + .map-stage::before,
+.map-stage--detour + .map-stage::before {
   top: calc(-1 * var(--path-gap) / 2);
   height: calc(var(--path-gap) / 2);
 }
 
-.map-stage--fork + .map-stage::after {
+.map-stage--fork + .map-stage::after,
+.map-stage--detour + .map-stage::after {
   top: calc(-1 * var(--path-gap));
   left: calc((100% - var(--fork-gap)) / 4);
   right: calc((100% - var(--fork-gap)) / 4);
   height: calc(var(--path-gap) / 2);
   border: var(--path);
   border-top: 0;
-}
-
-.map-stage--side::before {
-  border-left-style: dashed;
-}
-
-.prose .map-label {
-  margin: 0 0 0.4rem;
-  font-family: var(--font-label);
-  font-size: 0.8rem;
-  text-transform: var(--label-case);
-  letter-spacing: var(--label-tracking);
-  color: var(--accent);
 }
 
 .map-room {

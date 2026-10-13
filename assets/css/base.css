@@ -833,6 +833,7 @@ pre code {
 .prose .dungeon-map {
   --fork-gap: 2.5rem;
   --path-gap: 2rem;
+  --detour-drop: 1.75rem;
   --path: var(--map-path-width) var(--map-path-style) var(--map-path);
   display: grid;
   gap: var(--path-gap);
@@ -915,8 +916,12 @@ pre code {
   pointer-events: none;
 }
 
+.map-stage--detour > .map-room + .map-room {
+  margin-top: var(--detour-drop);
+}
+
 .map-stage--detour::after {
-  top: 50%;
+  top: calc(var(--detour-drop) + 1.25rem);
   left: calc((100% - var(--fork-gap)) / 2);
   width: var(--fork-gap);
   border-top: var(--path);

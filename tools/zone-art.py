@@ -702,6 +702,144 @@ def hundun_corner(r):
     return c
 
 
+# ---------------------------------------------------------------- sparrow
+
+def sparrow_top(r):
+    c = Canvas(64, 8)
+    # A rope strung along the top, with a few knots.
+    for x in range(64):
+        y = 1 + round(math.sin(x / 64 * math.tau) * 0.8)
+        c.set(x, y, "#a8743f" if x % 3 else "#8c5a33")
+        c.set(x, y + 1, "#6b4424")
+    for x in range(8, 64, 16):
+        for y in range(2, 6):
+            c.set(x, y, "#a8743f")
+        c.set(x, 6, "#c9945a")
+    return c
+
+
+def sparrow_bottom(r):
+    c = Canvas(64, 10)
+    ground(c, r, ["#4f8a6a", "#3a6a52", "#2a4f3d", "#1f3a2d"], waves=((2, 0.8), (6, 0.4)), base=5)
+    for _ in range(4):
+        x = r.randrange(64)
+        c.set(x, 4, "#f2c14e")
+        c.set(wrap(c, x + 1), 4, "#ffe68a")
+    return c
+
+
+def sparrow_corner(r):
+    c = Canvas(32, 32)
+    # A sparrow perched on a sack of loot.
+    ellipse(c, 21, 25, 8, 6, "#8a6a46")
+    ellipse(c, 19, 24, 5, 4, "#a8865a")
+    for x in range(18, 25):
+        c.set(x, 19, "#6b4a2a")
+    c.set(21, 18, "#f2c14e")
+    c.set(22, 18, "#ffe68a")
+    c.set(23, 19, "#f2c14e")
+    # The bird.
+    ellipse(c, 20, 13, 4, 3, "#9a6a3a")
+    ellipse(c, 19, 14, 2.5, 1.6, "#e8d0a8")
+    ellipse(c, 24, 10, 2.2, 2.2, "#7a5230")
+    c.set(25, 9, "#1a0f08")
+    c.set(27, 10, "#f2c14e")
+    c.set(26, 10, "#f2c14e")
+    for x in range(13, 17):
+        c.set(x, 12 + (16 - x) // 2, "#6b4424")
+    c.set(20, 16, "#c9945a")
+    c.set(22, 16, "#c9945a")
+    return c
+
+
+# ---------------------------------------------------------------- beg
+
+def beg_top(r):
+    c = Canvas(64, 8)
+    # Prayer flags on a line.
+    for x in range(64):
+        c.set(x, 1, "#8a6a46")
+    flags = ["#e0b07a", "#c9506e", "#6fa6c4", "#9fd67a", "#f2c14e"]
+    for i, x in enumerate(range(2, 64, 8)):
+        col = flags[i % len(flags)]
+        for y in range(2, 6):
+            for dx in range(0, 5 - (y - 2)):
+                c.set(x + dx, y, col)
+    return c
+
+
+def beg_bottom(r):
+    c = Canvas(64, 10)
+    ground(c, r, ["#b08a5a", "#8a6a46", "#6b4f33", "#523a24"], waves=((3, 0.7), (7, 0.3)), base=5)
+    return c
+
+
+def beg_corner(r):
+    c = Canvas(32, 32)
+    # A begging bowl with a coin dropping into it.
+    for y in range(22, 30):
+        t = (y - 22) / 7
+        w = 9 - t * t * 5
+        for x in range(round(21 - w), round(21 + w) + 1):
+            c.set(x, y, "#8a6a46" if x < 21 else "#6b4f33")
+    for x in range(12, 31):
+        c.set(x, 22, "#b08a5a")
+    for x in range(14, 29):
+        c.set(x, 23, "#3a2a18")
+    ellipse(c, 21, 30, 4, 1.2, "#523a24")
+    for cx, cy in ((19, 21), (23, 21)):
+        c.set(cx, cy, "#f2c14e")
+        c.set(cx + 1, cy, "#ffe68a")
+    ellipse(c, 22, 10, 2.4, 2.4, "#f2c14e")
+    c.set(21, 9, "#ffe68a")
+    c.set(22, 10, "#b8801f")
+    for y in (13, 15, 17):
+        c.set(22, y, "#ffe68a")
+    return c
+
+
+# ---------------------------------------------------------------- kali
+
+def kali_top(r):
+    c = Canvas(64, 10)
+    drips(c, r, ["#4a1414", "#5a1a1a", "#3a1010"], "#8a2020", "#ff5a5a", spacing=(6, 13), length=(1, 5))
+    return c
+
+
+def kali_bottom(r):
+    c = Canvas(64, 10)
+    for x in range(64):
+        for y in range(4, 10):
+            edge = (x + (8 if y > 6 else 0)) % 16 == 0 or y in (4, 7)
+            c.set(x, y, "#2a1414" if edge else ("#5a3a3a" if y < 7 else "#4a2e2e"))
+    return c
+
+
+def kali_corner(r):
+    c = Canvas(32, 32)
+    # A stone altar with an offering burning on it.
+    for y in range(20, 32):
+        for x in range(8, 32):
+            top = y < 22
+            c.set(x, y, "#7a5a5a" if top else ("#5a3a3a" if (x // 6 + y // 4) % 2 else "#4e3232"))
+    for x in range(8, 32):
+        c.set(x, 20, "#9a7676")
+    for x in range(14, 27):
+        c.set(x, 25, "#8a2020")
+    c.set(20, 26, "#ff5a5a")
+    for y in range(8, 20):
+        t = (y - 8) / 11
+        w = 4.5 * (t ** 0.7)
+        if t > 0.75:
+            w *= max(0.0, 1 - ((t - 0.75) / 0.3) ** 2)
+        for x in range(round(20 - w), round(20 + w) + 1):
+            core = abs(x - 20) < w * 0.45
+            c.set(x, y, "#ffd0e0" if core and t > 0.4 else ("#ff6a8a" if abs(x - 20) < w * 0.75 else "#c22a4a"))
+    for x, y in ((16, 6), (24, 5), (19, 3)):
+        c.set(x, y, "#ff6a8a")
+    return c
+
+
 PIECES = {
     "jungle": (jungle_top, jungle_bottom, jungle_corner),
     "volcana": (volcana_top, volcana_bottom, volcana_corner),
@@ -715,6 +853,9 @@ PIECES = {
     "sunken-city": (sunken_top, sunken_bottom, sunken_corner),
     "eggplant-world": (eggplant_top, eggplant_bottom, eggplant_corner),
     "hundun": (hundun_top, hundun_bottom, hundun_corner),
+    "sparrow": (sparrow_top, sparrow_bottom, sparrow_corner),
+    "beg": (beg_top, beg_bottom, beg_corner),
+    "kali": (kali_top, kali_bottom, kali_corner),
 }
 
 

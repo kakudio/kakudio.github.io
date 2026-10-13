@@ -230,6 +230,9 @@ pre {
 .map-room[data-zone="sunken-city"]    { --zone: #c6e06a; }
 .map-room[data-zone="eggplant-world"] { --zone: #d79cff; }
 .map-room[data-zone="hundun"]         { --zone: #f2c14e; }
+.map-room[data-zone="sparrow"]        { --zone: #8fdcb4; }
+.map-room[data-zone="beg"]            { --zone: #e8c896; }
+.map-room[data-zone="kali"]           { --zone: #ff7a7a; }
 
 .map-room[data-zone] {
   box-shadow:
@@ -239,6 +242,7 @@ pre {
 }
 
 .map-room[data-zone] h3,
+.map-room[data-zone] h4,
 .map-room[data-zone] li::marker {
   color: var(--zone);
 }
@@ -348,6 +352,33 @@ pre {
     linear-gradient(90deg, rgb(19 9 26 / 0.82) 0 45%, rgb(19 9 26 / 0.15)),
     url("/assets/themes/spelunky/img/zones/eggplant-world-corner.svg") 100% calc(100% - 8px) / auto min(96px, 100% - 8px) no-repeat,
     linear-gradient(#1e0f28, #13091a);
+}
+
+.map-room[data-zone="sparrow"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/sparrow-top.svg") 0 0 / 96px 12px repeat-x,
+    url("/assets/themes/spelunky/img/zones/sparrow-bottom.svg") 0 100% / 128px 20px repeat-x,
+    linear-gradient(90deg, rgb(9 20 15 / 0.82) 0 45%, rgb(9 20 15 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/sparrow-corner.svg") 100% calc(100% - 8px) / auto min(96px, 100% - 8px) no-repeat,
+    linear-gradient(#102018, #09140f);
+}
+
+.map-room[data-zone="beg"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/beg-top.svg") 0 0 / 96px 12px repeat-x,
+    url("/assets/themes/spelunky/img/zones/beg-bottom.svg") 0 100% / 128px 20px repeat-x,
+    linear-gradient(90deg, rgb(21 15 8 / 0.82) 0 45%, rgb(21 15 8 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/beg-corner.svg") 100% calc(100% - 6px) / auto min(96px, 100% - 6px) no-repeat,
+    linear-gradient(#22180e, #150f08);
+}
+
+.map-room[data-zone="kali"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/kali-top.svg") 0 0 / 96px 15px repeat-x,
+    url("/assets/themes/spelunky/img/zones/kali-bottom.svg") 0 100% / 128px 20px repeat-x,
+    linear-gradient(90deg, rgb(22 9 9 / 0.82) 0 45%, rgb(22 9 9 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/kali-corner.svg") 100% calc(100% - 8px) / auto min(96px, 100% - 8px) no-repeat,
+    linear-gradient(#241010, #160909);
 }
 
 .map-room[data-zone="hundun"] {

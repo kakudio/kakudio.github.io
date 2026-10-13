@@ -1006,11 +1006,23 @@ pre code {
   border-color: var(--accent);
 }
 
-.map-room--roaming {
-  max-width: 46rem;
+.prose .map-roamers-heading {
+  margin-top: 2.5rem;
 }
 
-.prose .map-room h3 {
+.prose .map-roamers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.map-roamers .map-room {
+  max-width: none;
+}
+
+.prose .map-room h3,
+.prose .map-room h4 {
   font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
   margin: 0 0 0.4rem;
 }

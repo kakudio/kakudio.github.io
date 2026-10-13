@@ -231,9 +231,6 @@ pre {
 .map-room[data-zone="eggplant-world"] { --zone: #d79cff; }
 
 .map-room[data-zone] {
-  background:
-    linear-gradient(color-mix(in srgb, var(--zone) 10%, transparent), color-mix(in srgb, var(--zone) 10%, transparent)),
-    var(--surface-image), var(--surface);
   box-shadow:
     0 4px 0 #0b0603,
     inset 0 0 0 1px color-mix(in srgb, var(--zone) 35%, transparent),
@@ -245,56 +242,116 @@ pre {
   color: var(--zone);
 }
 
-/* Zones with their own art: a fringe along the top, ground along the
+/* Every zone has its own art: a fringe along the top, ground along the
    bottom and a scene in the corner, behind a shade that keeps the checks
-   readable. */
-.map-room[data-zone="jungle"]    { --zone-art: jungle; }
-.map-room[data-zone="volcana"]   { --zone-art: volcana; }
-.map-room[data-zone="ice-caves"] { --zone-art: ice-caves; }
-
-.map-room[data-zone="jungle"],
-.map-room[data-zone="volcana"],
-.map-room[data-zone="ice-caves"] {
+   readable. The art is in img/zones/. */
+.map-room[data-zone] {
   --map-room-art-top: 0.5rem;
   --map-room-art-bottom: 1rem;
-  --shade: rgb(20 12 6 / 0.82);
+}
+
+.map-room[data-zone="dwelling"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/dwelling-top.svg") 0 0 / 96px 15px repeat-x,
+    url("/assets/themes/spelunky/img/zones/dwelling-bottom.svg") 0 100% / 128px 20px repeat-x,
+    linear-gradient(90deg, rgb(23 14 6 / 0.82) 0 45%, rgb(23 14 6 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/dwelling-corner.svg") 100% calc(100% - 8px) / auto min(96px, 100% - 8px) no-repeat,
+    linear-gradient(#241608, #170e06);
 }
 
 .map-room[data-zone="jungle"] {
-  --shade: rgb(10 18 8 / 0.8);
   background:
     url("/assets/themes/spelunky/img/zones/jungle-top.svg") 0 0 / 96px 15px repeat-x,
     url("/assets/themes/spelunky/img/zones/jungle-bottom.svg") 0 100% / 128px 20px repeat-x,
-    linear-gradient(90deg, var(--shade) 0 45%, rgb(10 18 8 / 0.15)),
-    url("/assets/themes/spelunky/img/zones/jungle-corner.svg") 100% 100% / 96px 96px no-repeat,
+    linear-gradient(90deg, rgb(13 21 10 / 0.82) 0 45%, rgb(13 21 10 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/jungle-corner.svg") 100% 100% / auto min(96px, 100%) no-repeat,
     linear-gradient(#142010, #0d150a);
 }
 
 .map-room[data-zone="volcana"] {
-  --shade: rgb(24 8 4 / 0.8);
   background:
     url("/assets/themes/spelunky/img/zones/volcana-top.svg") 0 0 / 96px 12px repeat-x,
     url("/assets/themes/spelunky/img/zones/volcana-bottom.svg") 0 100% / 128px 24px repeat-x,
-    linear-gradient(90deg, var(--shade) 0 45%, rgb(24 8 4 / 0.15)),
-    url("/assets/themes/spelunky/img/zones/volcana-corner.svg") 100% calc(100% - 14px) / 96px 96px no-repeat,
+    linear-gradient(90deg, rgb(23 7 4 / 0.82) 0 45%, rgb(23 7 4 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/volcana-corner.svg") 100% calc(100% - 14px) / auto min(96px, 100% - 14px) no-repeat,
     linear-gradient(#2a0f07, #170704);
 }
 
+.map-room[data-zone="olmec"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/olmec-top.svg") 0 0 / 96px 12px repeat-x,
+    url("/assets/themes/spelunky/img/zones/olmec-bottom.svg") 0 100% / 128px 20px repeat-x,
+    linear-gradient(90deg, rgb(18 18 16 / 0.82) 0 45%, rgb(18 18 16 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/olmec-corner.svg") 100% calc(100% - 10px) / auto min(96px, 100% - 10px) no-repeat,
+    linear-gradient(#1e1e17, #121210);
+}
+
+.map-room[data-zone="tide-pool"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/tide-pool-top.svg") 0 0 / 96px 15px repeat-x,
+    url("/assets/themes/spelunky/img/zones/tide-pool-bottom.svg") 0 100% / 128px 24px repeat-x,
+    linear-gradient(90deg, rgb(8 21 24 / 0.82) 0 45%, rgb(8 21 24 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/tide-pool-corner.svg") 100% calc(100% - 12px) / auto min(96px, 100% - 12px) no-repeat,
+    linear-gradient(#0c2024, #081518);
+}
+
+.map-room[data-zone="temple"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/temple-top.svg") 0 0 / 96px 12px repeat-x,
+    url("/assets/themes/spelunky/img/zones/temple-bottom.svg") 0 100% / 128px 20px repeat-x,
+    linear-gradient(90deg, rgb(24 18 8 / 0.82) 0 45%, rgb(24 18 8 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/temple-corner.svg") 100% calc(100% - 8px) / auto min(96px, 100% - 8px) no-repeat,
+    linear-gradient(#261c0c, #181208);
+}
+
 .map-room[data-zone="ice-caves"] {
-  --shade: rgb(8 16 26 / 0.8);
   background:
     url("/assets/themes/spelunky/img/zones/ice-caves-top.svg") 0 0 / 96px 15px repeat-x,
     url("/assets/themes/spelunky/img/zones/ice-caves-bottom.svg") 0 100% / 128px 20px repeat-x,
-    linear-gradient(90deg, var(--shade) 0 45%, rgb(8 16 26 / 0.15)),
-    url("/assets/themes/spelunky/img/zones/ice-caves-corner.svg") 100% calc(100% - 10px) / 96px 96px no-repeat,
+    linear-gradient(90deg, rgb(10 20 29 / 0.82) 0 45%, rgb(10 20 29 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/ice-caves-corner.svg") 100% calc(100% - 10px) / auto min(96px, 100% - 10px) no-repeat,
     linear-gradient(#10202e, #0a141d);
 }
 
+.map-room[data-zone="neo-babylon"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/neo-babylon-top.svg") 0 0 / 96px 12px repeat-x,
+    url("/assets/themes/spelunky/img/zones/neo-babylon-bottom.svg") 0 100% / 128px 20px repeat-x,
+    linear-gradient(90deg, rgb(14 11 28 / 0.82) 0 45%, rgb(14 11 28 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/neo-babylon-corner.svg") 100% calc(100% - 10px) / auto min(96px, 100% - 10px) no-repeat,
+    linear-gradient(#16122a, #0e0b1c);
+}
+
+.map-room[data-zone="tiamat"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/tiamat-top.svg") 0 0 / 96px 12px repeat-x,
+    url("/assets/themes/spelunky/img/zones/tiamat-bottom.svg") 0 100% / 128px 24px repeat-x,
+    linear-gradient(90deg, rgb(8 13 28 / 0.82) 0 45%, rgb(8 13 28 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/tiamat-corner.svg") 100% calc(100% - 12px) / auto min(96px, 100% - 12px) no-repeat,
+    linear-gradient(#0c142a, #080d1c);
+}
+
+.map-room[data-zone="sunken-city"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/sunken-city-top.svg") 0 0 / 96px 15px repeat-x,
+    url("/assets/themes/spelunky/img/zones/sunken-city-bottom.svg") 0 100% / 128px 24px repeat-x,
+    linear-gradient(90deg, rgb(26 7 14 / 0.82) 0 45%, rgb(26 7 14 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/sunken-city-corner.svg") 100% calc(100% - 12px) / auto min(96px, 100% - 12px) no-repeat,
+    linear-gradient(#2a0c16, #1a070e);
+}
+
+.map-room[data-zone="eggplant-world"] {
+  background:
+    url("/assets/themes/spelunky/img/zones/eggplant-world-top.svg") 0 0 / 96px 15px repeat-x,
+    url("/assets/themes/spelunky/img/zones/eggplant-world-bottom.svg") 0 100% / 128px 20px repeat-x,
+    linear-gradient(90deg, rgb(19 9 26 / 0.82) 0 45%, rgb(19 9 26 / 0.15)),
+    url("/assets/themes/spelunky/img/zones/eggplant-world-corner.svg") 100% calc(100% - 8px) / auto min(96px, 100% - 8px) no-repeat,
+    linear-gradient(#1e0f28, #13091a);
+}
+
 @media (max-width: 30rem) {
-  .map-room[data-zone="jungle"],
-  .map-room[data-zone="volcana"],
-  .map-room[data-zone="ice-caves"] {
-    background-size: 96px 15px, 128px 20px, auto, 64px 64px, auto;
+  .map-room[data-zone] {
+    background-size: 96px auto, 128px auto, auto, auto min(64px, 100%), auto;
   }
 }
 

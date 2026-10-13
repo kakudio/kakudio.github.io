@@ -237,8 +237,7 @@ pre {
 .map-room[data-zone] {
   box-shadow:
     0 4px 0 #0b0603,
-    inset 0 0 0 1px color-mix(in srgb, var(--zone) 35%, transparent),
-    inset 4px 0 0 var(--zone);
+    inset 0 0 0 1px color-mix(in srgb, var(--zone) 35%, transparent);
 }
 
 .map-room[data-zone] h3,

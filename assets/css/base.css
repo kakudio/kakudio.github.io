@@ -1117,6 +1117,20 @@ pre code {
   margin-top: 0.3rem;
 }
 
+/* Names in the map and the chest link to their guide entries. They keep the
+   colour of the list they sit in; the underline marks them as links. */
+.prose .map-room a,
+.prose .loot a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.prose .map-room a:hover,
+.prose .loot a:hover {
+  text-decoration-thickness: 2px;
+}
+
 @media (max-width: 30rem) {
   .prose .dungeon-map {
     --fork-gap: 1.75rem;

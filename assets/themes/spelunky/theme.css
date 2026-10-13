@@ -216,3 +216,31 @@ pre {
 .map-room--end {
   box-shadow: 0 4px 0 #0b0603, inset 0 0 0 1px var(--accent), 0 0 1.25em rgb(242 193 78 / 0.2);
 }
+
+/* Each room on the Shell Game map takes its zone's colour. */
+.map-room[data-zone="dwelling"]       { --zone: #e0b07a; }
+.map-room[data-zone="jungle"]         { --zone: #9fd67a; }
+.map-room[data-zone="volcana"]        { --zone: #ff8a5c; }
+.map-room[data-zone="olmec"]          { --zone: #cfc79a; }
+.map-room[data-zone="tide-pool"]      { --zone: #6fd6d0; }
+.map-room[data-zone="temple"]         { --zone: #f0cf7a; }
+.map-room[data-zone="ice-caves"]      { --zone: #b8e8ff; }
+.map-room[data-zone="neo-babylon"]    { --zone: #b9a8ff; }
+.map-room[data-zone="tiamat"]         { --zone: #8fb8ff; }
+.map-room[data-zone="sunken-city"]    { --zone: #ff9fb4; }
+.map-room[data-zone="eggplant-world"] { --zone: #d79cff; }
+
+.map-room[data-zone] {
+  background:
+    linear-gradient(color-mix(in srgb, var(--zone) 10%, transparent), color-mix(in srgb, var(--zone) 10%, transparent)),
+    var(--surface-image), var(--surface);
+  box-shadow:
+    0 4px 0 #0b0603,
+    inset 0 0 0 1px color-mix(in srgb, var(--zone) 35%, transparent),
+    inset 4px 0 0 var(--zone);
+}
+
+.map-room[data-zone] h3,
+.map-room[data-zone] li::marker {
+  color: var(--zone);
+}

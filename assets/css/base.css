@@ -49,6 +49,10 @@
 
   --ground-height: 0px;
 
+  --map-path: var(--line);
+  --map-path-style: solid;
+  --map-path-width: 3px;
+
   --space: clamp(4rem, 10vw, 8rem);
   --gutter: clamp(1rem, 5vw, 3rem);
 }
@@ -820,6 +824,180 @@ pre code {
 
 .options dd + dt {
   margin-top: 1.25rem;
+}
+
+/* Dungeon map: each area is a room, joined top to bottom by a path that
+   splits at a fork and joins again after it. */
+
+.prose .dungeon-map {
+  --fork-gap: 2.5rem;
+  --path-gap: 2rem;
+  --path: var(--map-path-width) var(--map-path-style) var(--map-path);
+  display: grid;
+  gap: var(--path-gap);
+  margin: 0 0 var(--path-gap);
+  padding: 0;
+  list-style: none;
+}
+
+.prose .dungeon-map > li + li {
+  margin-top: 0;
+}
+
+.map-stage {
+  position: relative;
+  display: grid;
+  justify-items: center;
+}
+
+.map-stage--fork {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--fork-gap);
+  align-items: stretch;
+  justify-items: stretch;
+}
+
+/* The path down from the room above. */
+.map-stage + .map-stage::before,
+.map-stage--fork + .map-stage::after,
+.map-stage--fork::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.map-stage + .map-stage::before {
+  top: calc(-1 * var(--path-gap));
+  left: 50%;
+  height: var(--path-gap);
+  border-left: var(--path);
+  transform: translateX(-50%);
+}
+
+/* A fork: the path splits over the two rooms... */
+.map-stage + .map-stage--fork::before {
+  height: calc(var(--path-gap) / 2);
+}
+
+.map-stage--fork::after {
+  top: calc(-1 * var(--path-gap) / 2);
+  left: calc((100% - var(--fork-gap)) / 4);
+  right: calc((100% - var(--fork-gap)) / 4);
+  height: calc(var(--path-gap) / 2);
+  border: var(--path);
+  border-bottom: 0;
+}
+
+/* ...and joins again below them. */
+.map-stage--fork + .map-stage::before {
+  top: calc(-1 * var(--path-gap) / 2);
+  height: calc(var(--path-gap) / 2);
+}
+
+.map-stage--fork + .map-stage::after {
+  top: calc(-1 * var(--path-gap));
+  left: calc((100% - var(--fork-gap)) / 4);
+  right: calc((100% - var(--fork-gap)) / 4);
+  height: calc(var(--path-gap) / 2);
+  border: var(--path);
+  border-top: 0;
+}
+
+.map-stage--side::before {
+  border-left-style: dashed;
+}
+
+.prose .map-or,
+.prose .map-label {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  text-transform: var(--label-case);
+  letter-spacing: var(--label-tracking);
+  color: var(--accent);
+}
+
+.prose .map-or {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.prose .map-label {
+  margin-bottom: 0.4rem;
+}
+
+.map-room {
+  width: 100%;
+  max-width: 22rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-image), var(--surface);
+}
+
+.map-stage--fork .map-room {
+  max-width: none;
+}
+
+.map-room--side {
+  border-style: dashed;
+}
+
+.map-room--end {
+  text-align: center;
+  border-color: var(--accent);
+}
+
+.prose .map-room--end h3 {
+  justify-content: center;
+}
+
+.map-room--roaming {
+  max-width: 46rem;
+}
+
+.prose .map-room h3 {
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+  margin: 0 0 0.4rem;
+}
+
+.prose .map-room p {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.prose .map-room--end p {
+  margin: 0;
+}
+
+.prose .map-checks {
+  margin: 0;
+  list-style-type: disc;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.prose .map-checks li + li {
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 30rem) {
+  .prose .dungeon-map {
+    --fork-gap: 1.75rem;
+  }
+
+  .map-room {
+    padding: 0.6rem 0.7rem;
+  }
+
+  .prose .map-checks {
+    padding-left: 0.9rem;
+    font-size: 0.85rem;
+  }
 }
 
 /* 404 */

@@ -59,7 +59,7 @@ Leave the group out while there is nothing to show.
 
 ## Themes
 
-The look is split in two. `assets/css/base.css` is game-neutral: it owns layout, spacing, accessibility and behaviour, and declares the custom properties (knobs) in its `:root` with plain defaults — palette, fonts, wordmark lettering, button, code-block and focus-ring styling, and the height of the hero's ground. A theme dresses the page for one game on top of that.
+The look is split in two. `assets/css/base.css` is game-neutral: it owns layout, spacing, accessibility and behaviour, and declares the custom properties (knobs) in its `:root` with plain defaults — palette, fonts, wordmark lettering, button, code-block and focus-ring styling, the height of the hero's ground, and the colour and style of the paths on the Shell Game page's dungeon map. A theme dresses the page for one game on top of that.
 
 **What a theme contains.** One folder under `assets/themes/`, holding everything the look needs:
 

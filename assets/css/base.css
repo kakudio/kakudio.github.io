@@ -829,6 +829,14 @@ pre code {
   margin-top: 1.25rem;
 }
 
+.prose .options dd > p {
+  margin: 0 0 0.5rem;
+}
+
+.prose .options dd > ul {
+  margin: 0;
+}
+
 /* Treasure chest: a framed grid of items. A theme can give it a lid by
    setting --chest-lid-height and drawing the lid in that space. */
 

@@ -1010,36 +1010,6 @@ pre code {
   margin-top: 2.5rem;
 }
 
-/* On wide screens the character rooms run in a column beside the map,
-   along a path of their own. */
-@media (min-width: 70rem) {
-  .prose > .map-layout {
-    max-width: none;
-    display: grid;
-    grid-template-columns: minmax(0, 46rem) minmax(14rem, 18rem);
-    column-gap: 2.5rem;
-    align-items: start;
-  }
-
-  .map-roamers-panel {
-    padding-left: 1.5rem;
-    border-left: var(--map-path-width) var(--map-path-style) var(--map-path);
-  }
-
-  .prose .map-roamers-heading {
-    margin-top: 0;
-    font-size: clamp(1.15rem, 1rem + 0.5vw, 1.35rem);
-  }
-
-  .prose .map-roamers-panel > p {
-    font-size: 0.9rem;
-  }
-
-  .prose .map-roamers {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
 .prose .map-roamers {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));

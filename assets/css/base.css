@@ -837,8 +837,10 @@ pre code {
   margin: 0;
 }
 
-/* Guide pages: /shell-game/<area>/ has one .entry section per check, quest
-   or boss. The section's id is the anchor other pages link to. */
+/* Guide pages: /shell-game/<area>/ is a guide to the area in .topic
+   sections, one per level feature, quest or boss, with h3s for the parts
+   that need them. Every id on a section or heading is an anchor other pages
+   link to. Pages not yet rewritten still use one .entry section per check. */
 
 .prose .guide-contents {
   display: grid;
@@ -869,9 +871,34 @@ pre code {
   margin-bottom: 1.5rem;
 }
 
-.prose .entry h3 {
+.prose .entry h3,
+.prose .topic h3 {
   font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
   margin: 1.75rem 0 0.75rem;
+}
+
+/* A Shell Game note: the one place a guide page says what Shell Game does
+   differently, set apart from the base-game text around it. It opens with
+   <strong class="note-label">In Shell Game</strong>. */
+
+.prose > .shell-game-note {
+  margin: 1.5rem 0;
+  padding: 0.85rem clamp(0.85rem, 3vw, 1.25rem);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.prose .note-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: var(--label-case);
+  letter-spacing: var(--label-tracking);
+  color: var(--accent);
 }
 
 /* A roamer's entry (/shell-game/anywhere/) holds one .entry-check heading per

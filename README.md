@@ -19,7 +19,7 @@ The report form on `/bug-report/` is the one piece of JavaScript on the site; ev
 | What | Where |
 | --- | --- |
 | Homepage: brand copy, headings (including each game), Shell Game's name, Beta badge, descriptor, pitch and requirements line, beta-tester and About text, footer | `index.html` |
-| Homepage links (Download Beta, How it works, View on GitHub, Join Discord, Report bugs that you find, About's closing line, Kakudio on GitHub) | `href`s in `index.html` |
+| Homepage links (Download Beta, How it works, Join Discord, Report bugs that you find, About's closing line, Kakudio on GitHub) | `href`s in `index.html` |
 | Shell Game page: its name, descriptor and Beta badge, its buttons, the latest release, and how Shell Game works, where things turn up, the options, install steps and how to report a bug; each check and item it lists links to its entry on a guide page | `shell-game/index.html`, served at `/shell-game/` |
 | Shell Game guide pages: one per area of the run, each entry saying what a check, quest or boss is, how to reach it and how to do it; plus the anywhere page, for the roamers (Sparrow, Beg, Kali) and every shuffled item | `shell-game/<zone>/index.html`, served at `/shell-game/<zone>/`, one for every area on the map (Dwelling to Hundun), where `<zone>` is the area room's `data-zone`; the anywhere page is `shell-game/anywhere/index.html`, served at `/shell-game/anywhere/` |
 | Bug-reporting page: where run logs live, the report form and all its copy, the report service's URLs and rules, and the instructions for sending a report from a script or agent, with the mods it covers | `bug-report/index.html`, served at `/bug-report/` |
@@ -60,7 +60,7 @@ Leave the group out while there is nothing to show.
 
 **Projects.** Projects are grouped by game: each game is a `<section class="game">` in `index.html` headed by the game's name, holding one `<article class="project-card">` per mod. Add a mod as another article inside its game; add a game as another section.
 
-**The randomizer repository must be public.** View on GitHub and Download Beta, on the homepage and on `/shell-game/`, point at [kakudio/spelunky2-shell-game](https://github.com/kakudio/spelunky2-shell-game) and its `/releases/latest`. Both 404 for visitors while that repository is private. `/releases/latest` always resolves to the newest release, so new betas need no change to Download Beta. Link the repository by that name, not by an older one GitHub redirects from.
+**The randomizer repository must be public.** Download Beta, on the homepage and on `/shell-game/`, points at the `/releases/latest` of [kakudio/spelunky2-shell-game](https://github.com/kakudio/spelunky2-shell-game), and `/shell-game/`'s release, release-notes and README links point into the same repository. All of them 404 for visitors while that repository is private. `/releases/latest` always resolves to the newest release, so new betas need no change to Download Beta. Link the repository by that name, not by an older one GitHub redirects from.
 
 ## Themes
 

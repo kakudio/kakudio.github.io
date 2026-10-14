@@ -246,6 +246,14 @@ pre {
   color: var(--zone);
 }
 
+.map-room[data-zone] a {
+  text-decoration-color: color-mix(in srgb, var(--zone) 70%, transparent);
+}
+
+.map-room[data-zone] a:hover {
+  color: var(--zone);
+}
+
 /* Every zone has its own art: a fringe along the top, ground along the
    bottom and a scene in the corner, behind a shade that keeps the checks
    readable. The art is in img/zones/. */
@@ -457,6 +465,14 @@ pre {
   border-color: #0b0603;
   background: rgb(20 11 5 / 0.88);
   box-shadow: inset 0 1px 0 rgb(242 193 78 / 0.18);
+}
+
+.prose .loot a {
+  text-decoration-color: rgb(242 193 78 / 0.7);
+}
+
+.prose .loot a:hover {
+  color: var(--accent);
 }
 
 .prose .loot li::before {

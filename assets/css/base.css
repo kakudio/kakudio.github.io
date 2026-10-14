@@ -837,6 +837,61 @@ pre code {
   margin: 0;
 }
 
+/* Guide pages: /shell-game/<area>/ is a guide to the area in .topic
+   sections, one per level feature, quest or boss, with h3s for the parts
+   that need them. Every id on a section or heading is an anchor other pages
+   link to. Every section ends with an .entry-back link to /shell-game/. */
+
+.prose .guide-contents {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: 0.5rem 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.prose .guide-contents li + li {
+  margin-top: 0;
+}
+
+.prose .guide-contents a {
+  font-weight: 600;
+}
+
+.prose .topic h3 {
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  margin: 1.75rem 0 0.75rem;
+}
+
+/* A Shell Game note: the one place a guide page says what Shell Game does
+   differently, set apart from the base-game text around it. It opens with
+   <strong class="note-label">In Shell Game</strong>. */
+
+.prose > .shell-game-note {
+  margin: 1.5rem 0;
+  padding: 0.85rem clamp(0.85rem, 3vw, 1.25rem);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.prose .note-label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-label);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: var(--label-case);
+  letter-spacing: var(--label-tracking);
+  color: var(--accent);
+}
+
+.prose .entry-back {
+  margin: 1.75rem 0 0;
+  font-size: 0.95rem;
+}
+
 /* Treasure chest: a framed grid of items. A theme can give it a lid by
    setting --chest-lid-height and drawing the lid in that space. */
 
@@ -1055,6 +1110,20 @@ pre code {
 
 .prose .map-checks li + li {
   margin-top: 0.3rem;
+}
+
+/* Names in the map and the chest link to their guide entries. They keep the
+   colour of the list they sit in; the underline marks them as links. */
+.prose .map-room a,
+.prose .loot a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.prose .map-room a:hover,
+.prose .loot a:hover {
+  text-decoration-thickness: 2px;
 }
 
 @media (max-width: 30rem) {
